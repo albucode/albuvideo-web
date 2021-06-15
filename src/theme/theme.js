@@ -7,7 +7,8 @@ const theme = extendTheme({
   },
   colors: {
     lightBlue: "rgb(49, 81, 254)",
-    black: "#222222"
+    black: "#222222",
+    blue: "#3246D2",
   }
 })
 

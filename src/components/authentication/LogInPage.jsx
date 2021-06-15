@@ -1,7 +1,7 @@
 import React from "react";
 import styled from '@emotion/styled'
 import theme  from "../../theme/theme"
-import { Box, Text, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Text, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 
 
 export const LogInPage = () => {
@@ -21,6 +21,9 @@ export const LogInPage = () => {
               <Label>Password</Label>
               <Input type="password" />
             </FormItem>
+            <LogInButton>
+              Log In
+            </LogInButton>
           </FormContainer>
         </FormBackground>
     </PageBackground>
@@ -49,6 +52,13 @@ padding-right: 20%;
 padding-left: 20%;
 `
 
+const Header = styled(Text)`
+font-weight: 700;
+font-size: 24px;
+text-align: center;
+padding-bottom: 48px;
+`
+
 const Label = styled(FormLabel)`
 color: ${theme.colors.black};
 font-size: 18px;
@@ -62,9 +72,9 @@ const Image = styled(Box)`
 width: 70%;
 `
 
-const Header = styled(Text)`
-font-weight: 700;
-font-size: 24px;
-text-align: center;
-padding-bottom: 48px;
+const LogInButton = styled(Button)`
+background-color: blue;
+color: white;
+width: 100%;
+marginTop: 24px;
 `
