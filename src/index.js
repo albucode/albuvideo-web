@@ -6,11 +6,17 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { ChakraProvider } from "@chakra-ui/react"
+import theme from "../src/theme/theme"
+import "@fontsource/open-sans/400.css"
+import "@fontsource/open-sans/600.css"
+import "@fontsource/open-sans/700.css"
+import "@fontsource/open-sans/800.css"
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
       <App />
       </ChakraProvider>
     </Provider>
