@@ -6,7 +6,8 @@ const theme = extendTheme({
     body: "Open Sans",
   },
   colors: {
-    lightBlue: " rgb(49, 81, 254)",
+    lightBlue: "rgb(49, 81, 254)",
+    black: "#222222"
   }
 })
 
