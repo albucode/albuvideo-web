@@ -1,5 +1,6 @@
 import React from "react";
 import styled from '@emotion/styled'
+import theme  from "../../theme/theme"
 import { Box, Text } from "@chakra-ui/react";
 
 
@@ -24,7 +25,7 @@ width: 70%;
 `
 
 const PageBackground = styled(Box)`
-background-color: rgb(49, 81, 254);
+background-color: ${theme.colors.lightBlue};
 height: 100vh;
 display: flex;
 `

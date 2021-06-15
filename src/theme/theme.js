@@ -5,5 +5,9 @@ const theme = extendTheme({
     heading: "Open Sans",
     body: "Open Sans",
   },
+  colors: {
+    lightBlue: " rgb(49, 81, 254)",
+  }
 })
-export default theme
+
+export default theme;
