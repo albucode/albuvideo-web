@@ -1,15 +1,17 @@
 import React from "react";
 import styled from '@emotion/styled'
 import theme  from "../../theme/theme"
-import { Box, Text, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Box, Text, FormControl, FormLabel, Input, Button, Image, Center } from "@chakra-ui/react";
 
 
 export const LogInPage = () => {
   return (
     <PageBackground >
-      <Image>
-
-      </Image>
+        <ImageContainer>
+          <Center height="100vh">
+          <Image src="computer-work.png"/>
+          </Center>
+        </ImageContainer>
         <FormBackground>
           <FormContainer>
             <Header>Login To Your Account</Header>
@@ -68,7 +70,7 @@ const FormItem = styled(FormControl)`
 padding-bottom: 24px;
 `
 
-const Image = styled(Box)`
+const ImageContainer = styled(Box)`
 width: 70%;
 `
 
