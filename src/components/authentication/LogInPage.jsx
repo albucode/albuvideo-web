@@ -12,6 +12,9 @@ import {
   Button,
   Image,
   Center,
+  Alert,
+  AlertDescription,
+  CloseButton,
 } from "@chakra-ui/react";
 import { Session } from "../../api/requests";
 import { loadUser } from "./userSlice";
@@ -19,6 +22,8 @@ import { loadUser } from "./userSlice";
 export const LogInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [messageError, setMessageError] = useState("");
+  const [errorAlert, setErrorAlert] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,9 +43,23 @@ export const LogInPage = () => {
         dispatch(loadUser(response));
         history.push("/dashboard");
       } else {
-        alert("Error! Error! Emergency!");
+        setMessageError(response.error);
+        setErrorAlert(true);
       }
     });
+  };
+
+  const handleClose = () => {
+    setErrorAlert(false);
+  };
+
+  const displayError = () => {
+    return (
+      <Alert status="error">
+      <AlertDescription>{messageError}</AlertDescription>
+      <CloseButton onClick={handleClose} position="absolute" right="8px" top="8px" />
+    </Alert>
+    );
   };
 
   return (
@@ -68,6 +87,7 @@ export const LogInPage = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </FormItem>
+            {errorAlert && displayError()}
             <LogInButton type="submit">Log In</LogInButton>
           </form>
         </FormContainer>
