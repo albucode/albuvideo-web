@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 
-import { LogInPage } from "./components/authentication/LogInPage";
-import { DashboardPage } from "./components/dashboard/DashboardPage";
+import { LogInPage } from "./features/authentication/LogInPage";
+import { DashboardPage } from "./features/dashboard/DashboardPage";
 
 function App() {
   return (
