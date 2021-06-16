@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import theme from "../../theme/theme";
 import {
@@ -12,18 +13,17 @@ import {
   Button,
   Image,
   Center,
-  Alert,
-  AlertDescription,
-  CloseButton,
 } from "@chakra-ui/react";
 import { Session } from "../../api/requests";
 import { loadUser } from "./userSlice";
+import { displayErrorAlert, loadErrorMessage } from "../shared/errorAlertSlice";
+import ErrorAlert  from "../shared/ErrorAlert";
 
 export const LogInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [messageError, setMessageError] = useState("");
-  const [errorAlert, setErrorAlert] = useState(false);
+
+  const { errorMessage, displayErrorMessage } = useSelector(state => state.errorAlert);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,23 +43,10 @@ export const LogInPage = () => {
         dispatch(loadUser(response));
         history.push("/dashboard");
       } else {
-        setMessageError(response.error);
-        setErrorAlert(true);
+        dispatch(loadErrorMessage(response.error));
+        dispatch(displayErrorAlert(true));
       }
     });
-  };
-
-  const handleClose = () => {
-    setErrorAlert(false);
-  };
-
-  const displayError = () => {
-    return (
-      <Alert status="error">
-      <AlertDescription>{messageError}</AlertDescription>
-      <CloseButton onClick={handleClose} position="absolute" right="8px" top="8px" />
-    </Alert>
-    );
   };
 
   return (
@@ -87,7 +74,7 @@ export const LogInPage = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </FormItem>
-            {errorAlert && displayError()}
+            { displayErrorMessage && <ErrorAlert message={errorMessage}/>}
             <LogInButton type="submit">Log In</LogInButton>
           </form>
         </FormContainer>
