@@ -15,15 +15,17 @@ export const errorAlertSlice = createSlice({
     }),
     displayErrorAlert: (state) => ({
       ...state,
-      displayErrorMessage: true
+      displayErrorMessage: true,
     }),
     hideErrorAlert: (state) => ({
       ...state,
-      displayErrorMessage: false
+      displayErrorMessage: false,
+      errorMessage: "",
     }),
   },
 });
 
-export const { loadErrorMessage, displayErrorAlert, hideErrorAlert } = errorAlertSlice.actions;
+export const { loadErrorMessage, displayErrorAlert, hideErrorAlert } =
+  errorAlertSlice.actions;
 
 export default errorAlertSlice.reducer;

@@ -17,13 +17,15 @@ import {
 import { Session } from "../../api/requests";
 import { loadUser } from "./userSlice";
 import { displayErrorAlert, loadErrorMessage } from "../shared/errorAlertSlice";
-import ErrorAlert  from "../shared/ErrorAlert";
+import ErrorAlert from "../shared/ErrorAlert";
 
 export const LogInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { errorMessage, displayErrorMessage } = useSelector(state => state.errorAlert);
+  const { errorMessage, displayErrorMessage } = useSelector(
+    (state) => state.errorAlert
+  );
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -74,7 +76,7 @@ export const LogInPage = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </FormItem>
-            { displayErrorMessage && <ErrorAlert message={errorMessage}/>}
+            {displayErrorMessage && <ErrorAlert message={errorMessage} />}
             <LogInButton type="submit">Log In</LogInButton>
           </form>
         </FormContainer>
