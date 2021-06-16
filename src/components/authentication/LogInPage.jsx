@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 import theme from "../../theme/theme";
 import {
@@ -12,13 +13,15 @@ import {
   Image,
   Center,
 } from "@chakra-ui/react";
-import { Session } from "../../api/requests"
-import { loadUser } from "./userSlice"
+import { Session } from "../../api/requests";
+import { loadUser } from "./userSlice";
+
 export const LogInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const createSession = (event) => {
     event.preventDefault();
@@ -33,11 +36,11 @@ export const LogInPage = () => {
     Session.create(requestBody).then((response) => {
       if (!response.error) {
         dispatch(loadUser(response));
-        alert("You are logged in");
+        history.push("/dashboard");
       } else {
-        alert("Error! Error! Emergency!")
+        alert("Error! Error! Emergency!");
       }
-    })
+    });
   };
 
   return (
