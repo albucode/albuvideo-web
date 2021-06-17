@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import theme from "../../theme/theme";
 import {
