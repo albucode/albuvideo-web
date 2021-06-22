@@ -29,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Menu/>
+      <Menu />
       <Switch>
         <Route exact path="/login" component={LogInPage} />
         <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
