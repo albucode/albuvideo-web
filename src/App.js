@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import PrivateRoute from "./PrivateRoute";
@@ -7,12 +7,12 @@ import { LogInPage } from "./features/authentication/LogInPage";
 import { CurrentUser } from "./api/requests";
 import { loadUser } from "./features/authentication/userSlice";
 import { Dashboard } from "./features/dashboard/Dashboard";
-import { Menu } from "./features/navigation/Menu";
 import { VideosIndex } from "./features/videos/VideosIndex";
 import { AccessTokensIndex } from "./features/accessTokens/AccessTokensIndex";
 import { SignatureKeysIndex } from "./features/signatureKeys/SignatureKeysIndex";
+import { SideBar } from "./features/navigation/SideBar";
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
 
   const fetchCurrentUser = () => {
@@ -27,26 +27,36 @@ function App() {
     fetchCurrentUser();
   });
 
-  return (
+  return userEmail ? (
+    <>
+      <BrowserRouter>
+        <SideBar />
+        <Switch>
+          <Route exact path="/login">
+            <Redirect to="/dashboard" /> }
+          </Route>
+          <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute exact path="/videos" userEmail={userEmail}>
+            <VideosIndex />
+          </PrivateRoute>
+          <PrivateRoute exact path="/access-tokens" userEmail={userEmail}>
+            <AccessTokensIndex />
+          </PrivateRoute>
+          <PrivateRoute exact path="/signature-keys" userEmail={userEmail}>
+            <SignatureKeysIndex />
+          </PrivateRoute>
+        </Switch>
+      </BrowserRouter>
+    </>
+  ) : (
     <BrowserRouter>
-      <Menu />
       <Switch>
         <Route exact path="/login" component={LogInPage} />
-        <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
-          <Dashboard />
-        </PrivateRoute>
-        <PrivateRoute exact path="/videos" userEmail={userEmail}>
-          <VideosIndex />
-        </PrivateRoute>
-        <PrivateRoute exact path="/access-tokens" userEmail={userEmail}>
-          <AccessTokensIndex />
-        </PrivateRoute>
-        <PrivateRoute exact path="/signature-keys" userEmail={userEmail}>
-          <SignatureKeysIndex />
-        </PrivateRoute>
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

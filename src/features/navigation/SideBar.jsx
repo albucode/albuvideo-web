@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "./MenuTabs";
+import { Menu } from "./Menu";
 
 export const SideBar = () => {
   return (
