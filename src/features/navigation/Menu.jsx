@@ -1,70 +1,48 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styled from "@emotion/styled";
 
 import Speedometer from "../shared/icons/Speedometer";
-import theme from "../../theme/theme";
 import  Video  from "../shared/icons/Video";
 import Ticket from "../shared/icons/Ticket";
 import DoubleCheck from "../shared/icons/DoubleCheck";
 
-
 export const Menu = () => {
   return (
     <>
-      <NavLink
+      <Link
         to="/dashboard"
-        style={{
-          color: theme.colors.grey1,
-          fontWeight: "600",
-        }}
-        activeStyle={{
-          color: theme.colors.blue,
-        }}
       >
         <Speedometer/>
         Dashboard
-      </NavLink>
+      </Link>
 
-      <NavLink
+      <Link
         to="/videos"
-        style={{
-          color: theme.colors.grey1,
-          fontWeight: "600",
-        }}
-        activeStyle={{
-          color: theme.colors.blue,
-        }}
       >
         <Video />
         Videos
-      </NavLink>
-      <NavLink
+      </Link>
+      <Link
         to="/access-tokens"
-        style={{
-          color: theme.colors.grey1,
-          fontWeight: "600",
-        }}
-        activeStyle={{
-          color: theme.colors.blue,
-        }}
       >
         <Ticket />
         Access tokens
-      </NavLink>
-      <NavLink
+      </Link>
+      <Link
         to="/signature-keys"
-        style={{
-          color: theme.colors.grey1,
-          fontWeight: "600",
-        }}
-        activeStyle={{
-          color: theme.colors.blue,
-        }}
       >
         <DoubleCheck />
         Signature keys
-      </NavLink>
+      </Link>
     </>
   );
 };
 
+const Link = styled(NavLink)`
+  color: ${props => props.theme.colors.grey1};
+   font-weight: 600;
+  &.active {
+   color:  ${props => props.theme.colors.blue};
+  }
+`;
