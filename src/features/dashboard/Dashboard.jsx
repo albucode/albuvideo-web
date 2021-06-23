@@ -1,9 +1,10 @@
 import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 
 export const Dashboard = () => {
   return (
-    <>
-      <p>This is the Dashboard</p>
-    </>
+    <Box>
+      <Text>This is the Dashboard</Text>
+    </Box>
   );
 };

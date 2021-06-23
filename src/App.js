@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Flex } from "@chakra-ui/react";
 
 import PrivateRoute from "./PrivateRoute";
 import { LogInPage } from "./features/authentication/LogInPage";
@@ -30,24 +31,26 @@ const App = () => {
   return userEmail ? (
     <>
       <BrowserRouter>
-        <SideBar />
-        <Switch>
-          <Route exact path="/login">
-            <Redirect to="/dashboard" /> }
-          </Route>
-          <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
-            <Dashboard />
-          </PrivateRoute>
-          <PrivateRoute exact path="/videos" userEmail={userEmail}>
-            <VideosIndex />
-          </PrivateRoute>
-          <PrivateRoute exact path="/access-tokens" userEmail={userEmail}>
-            <AccessTokensIndex />
-          </PrivateRoute>
-          <PrivateRoute exact path="/signature-keys" userEmail={userEmail}>
-            <SignatureKeysIndex />
-          </PrivateRoute>
-        </Switch>
+        <Flex width="1530px" background="#F6F9FE" minH="100vh" margin="0 auto">
+          <SideBar />
+          <Switch>
+            <Route exact path="/login">
+              <Redirect to="/dashboard" /> }
+            </Route>
+            <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
+              <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute exact path="/videos" userEmail={userEmail}>
+              <VideosIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/access-tokens" userEmail={userEmail}>
+              <AccessTokensIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/signature-keys" userEmail={userEmail}>
+              <SignatureKeysIndex />
+            </PrivateRoute>
+          </Switch>
+        </Flex>
       </BrowserRouter>
     </>
   ) : (
