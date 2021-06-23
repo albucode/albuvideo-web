@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { TopBar } from "../navigation/TopBar";
 
 export const Dashboard = () => {
   return (
     <Box>
-      <Text>This is the Dashboard</Text>
+      <TopBar sectionName="Dashboard" />
     </Box>
   );
 };
