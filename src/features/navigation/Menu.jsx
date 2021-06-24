@@ -42,7 +42,7 @@ const Link = styled(NavLink)`
   font-weight: 600;
   font-size: 18px;
   padding: 16px 24px;
-  max-width: 252px;
+  max-width: 325px;
   &.active {
     color: ${(props) => props.theme.colors.blue};
     border-right: 5px solid ${(props) => props.theme.colors.blue};
