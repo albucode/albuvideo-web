@@ -15,13 +15,12 @@ export const Dashboard = () => {
   );
 };
 
-
 const ContentContainer = styled(Box)`
   background-color: ${(props) => props.theme.colors.white};
   height: 300px;
   border-radius: 20px;
   padding: 32px;
-  `;
+`;
 
 const Title = styled(Text)`
   color: ${(props) => props.theme.colors.black};

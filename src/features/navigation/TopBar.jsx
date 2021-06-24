@@ -1,23 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
-import {
-  Flex,
-  Text,
-  IconButton,
-  Tag,
-  TagLabel,
-} from "@chakra-ui/react";
+import { Flex, Text, IconButton, Tag, TagLabel } from "@chakra-ui/react";
 
 import { SearchBar } from "../shared/SearchBar";
 import Bell from "../shared/icons/Bell";
 import Gear from "../shared/icons/Gear";
 
 export const TopBar = ({ sectionName }) => {
-
-  const { emailInitial } = useSelector(
-    (state) => state.user
-  );
+  const { emailInitial } = useSelector((state) => state.user);
 
   return (
     <Flex>

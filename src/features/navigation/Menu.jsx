@@ -34,6 +34,7 @@ export const Menu = () => {
 const MenuContainer = styled(Box)`
   display: flex;
   flex-direction: column;
+  margin-left: 36px;
 `;
 
 const Link = styled(NavLink)`
