@@ -31,7 +31,7 @@ const App = () => {
   return userEmail ? (
     <>
       <BrowserRouter>
-        <Flex width="1530px" background="#F6F9FE" minH="100vh" margin="0 auto">
+        <Flex maxWidth="1530px" background="#F6F9FE" minH="100vh" margin="0 auto">
           <SideBar />
           <Switch>
             <Route exact path="/login">

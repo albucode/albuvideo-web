@@ -11,12 +11,12 @@ export const TopBar = ({ sectionName }) => {
   const { emailInitial } = useSelector((state) => state.user);
 
   return (
-    <Flex>
+    <Flex marginBottom="40px">
       <SectionName>{sectionName}</SectionName>
       <SearchBar />
       <ButtonIcon icon={<Bell />} />
       <ButtonIcon icon={<Gear />} />
-      <Initial>
+      <Initial marginLeft="10px">
         <InitialLabel>{emailInitial}</InitialLabel>
       </Initial>
     </Flex>
@@ -36,6 +36,8 @@ const ButtonIcon = styled(IconButton)`
   height: 60px;
   width: 60px;
   background-color: white;
+  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 const Initial = styled(Tag)`

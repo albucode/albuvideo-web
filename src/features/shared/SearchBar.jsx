@@ -4,7 +4,7 @@ import Magnifier from "../shared/icons/Magnifier";
 
 export const SearchBar = () => {
   return (
-    <Center>
+    <Center marginRight="40px">
       <InputGroup borderColor="white">
         <InputLeftElement
           pr="16px"

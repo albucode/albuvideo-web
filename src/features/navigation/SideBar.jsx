@@ -20,4 +20,5 @@ export const SideBar = () => {
 const Container = styled(Box)`
   background-color: ${(props) => props.theme.colors.grey6};
   width: 345px;
+  padding-top: 50px;
 `;
