@@ -10,12 +10,13 @@ import {
   Th,
   Tbody,
   Text,
-  Tag,
   Flex,
 } from "@chakra-ui/react";
 
+import theme from "../../../src/theme/theme";
 import { TopBar } from "../navigation/TopBar";
 import Play from "../shared/icons/Play";
+import { Thumbnail } from "../shared/Thumbnail";
 
 export const VideosIndex = () => {
   return (
@@ -40,9 +41,7 @@ export const VideosIndex = () => {
           <Tr>
             <Td>
               <Flex>
-                <Thumbnail>
-                  <Play />
-                </Thumbnail>
+                <Thumbnail icon={<Play />} inputColor={theme.colors.magenta} />
                 <Text>Video title 1</Text>
               </Flex>
             </Td>
@@ -78,13 +77,4 @@ const THeader = styled(Th)`
   font-size: 18px;
   font-weight: 400;
   color: ${(props) => props.theme.colors.grey1};
-`;
-
-const Thumbnail = styled(Tag)`
-  background-color: ${(props) => props.theme.colors.magenta};
-  height: 54px;
-  width: 54px;
-  color: white;
-  display: flex;
-  justify-content: center;
 `;
