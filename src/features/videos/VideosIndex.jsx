@@ -30,9 +30,14 @@ export const VideosIndex = () => {
     dispatch(loadVideos(response));
   };
 
+  const { videos } = useSelector(
+    (state) => state.video
+  );
+
+
   useEffect(() => {
     fetchVideos();
-  });
+  }, []);
 
   return (
     <Box margin="0 auto" paddingTop="50px">
@@ -54,20 +59,22 @@ export const VideosIndex = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
+          {videos.map((video) =>
+          <Tr key={video.id}>
             <Td>
               <HStack>
                 <Thumbnail icon={<Play />} inputColor={theme.colors.magenta} />
-                <VideoTitle>Video title 1</VideoTitle>
+                <VideoTitle>{video.title}</VideoTitle>
               </HStack>
             </Td>
-            <TData>Processing</TData>
-            <TData>December 27th, 2021 04:56 AM</TData>
+            <TData>{video.status}</TData>
+            <TData>{video.created_at}</TData>
             <TData pr={0}>6:10</TData>
             <TData pl={0}>
               <Dots color={theme.colors.grey1} />
             </TData>
           </Tr>
+          )}
         </Tbody>
         <Tfoot>
           <Tr>
