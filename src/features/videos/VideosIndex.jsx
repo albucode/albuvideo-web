@@ -1,8 +1,21 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Box, Table, Tfoot, Thead, Tr, Td, Th, Tbody } from "@chakra-ui/react";
+import {
+  Box,
+  Table,
+  Tfoot,
+  Thead,
+  Tr,
+  Td,
+  Th,
+  Tbody,
+  Text,
+  Tag,
+  Flex,
+} from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
+import Play from "../shared/icons/Play";
 
 export const VideosIndex = () => {
   return (
@@ -25,7 +38,14 @@ export const VideosIndex = () => {
         </Thead>
         <Tbody>
           <Tr>
-            <Td>Video title 1</Td>
+            <Td>
+              <Flex>
+                <Thumbnail>
+                  <Play />
+                </Thumbnail>
+                <Text>Video title 1</Text>
+              </Flex>
+            </Td>
             <Td>Processing</Td>
             <Td>December 27th, 2021 04:56 AM</Td>
             <Td>6:10</Td>
@@ -58,4 +78,13 @@ const THeader = styled(Th)`
   font-size: 18px;
   font-weight: 400;
   color: ${(props) => props.theme.colors.grey1};
+`;
+
+const Thumbnail = styled(Tag)`
+  background-color: ${(props) => props.theme.colors.magenta};
+  height: 54px;
+  width: 54px;
+  color: white;
+  display: flex;
+  justify-content: center;
 `;

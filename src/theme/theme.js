@@ -7,7 +7,7 @@ const theme = extendTheme({
   },
   colors: {
     table: {
-       100: "#F3F2F7",
+      100: "#F3F2F7",
     },
     lightBlue: "rgb(49, 81, 254)",
     black: "#222222",
@@ -16,6 +16,7 @@ const theme = extendTheme({
     grey2: "#F3F2F7",
     grey6: "#EDF1F5",
     grey7: "#E5E5E5",
+    magenta: "#E328AF",
   },
 });
 
