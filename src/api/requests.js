@@ -26,3 +26,17 @@ export const CurrentUser = {
     }).then((res) => res.json());
   },
 };
+
+export const Video = {
+  async index() {
+    const response = await fetch(`${baseUrl}/videos`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.json();
+  },
+};

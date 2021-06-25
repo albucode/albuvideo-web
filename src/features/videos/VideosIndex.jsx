@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import {
   Box,
@@ -18,8 +18,22 @@ import { TopBar } from "../navigation/TopBar";
 import Play from "../shared/icons/Play";
 import { Thumbnail } from "../shared/Thumbnail";
 import Dots from "../shared/icons/Dots";
+import { useDispatch, useSelector } from "react-redux";
+import { Video } from "../../api/requests";
+import { loadVideos } from "../videos/videoSlice";
 
 export const VideosIndex = () => {
+  const dispatch = useDispatch();
+
+  const fetchVideos = async () => {
+    const response = await Video.index();
+    dispatch(loadVideos(response));
+  };
+
+  useEffect(() => {
+    fetchVideos();
+  });
+
   return (
     <Box margin="0 auto" paddingTop="50px">
       <TopBar sectionName="Videos" />
@@ -36,7 +50,7 @@ export const VideosIndex = () => {
             <THeader>Status</THeader>
             <THeader>Created at</THeader>
             <THeader pr={0}>Duration </THeader>
-            <THeader pr={0} >{""}</THeader>
+            <THeader pr={0}>{""}</THeader>
           </Tr>
         </Thead>
         <Tbody>
@@ -50,7 +64,9 @@ export const VideosIndex = () => {
             <TData>Processing</TData>
             <TData>December 27th, 2021 04:56 AM</TData>
             <TData pr={0}>6:10</TData>
-            <TData pl={0}><Dots color={theme.colors.grey1} /></TData>
+            <TData pl={0}>
+              <Dots color={theme.colors.grey1} />
+            </TData>
           </Tr>
         </Tbody>
         <Tfoot>
