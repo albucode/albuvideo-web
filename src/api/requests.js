@@ -1,28 +1,29 @@
 import { baseUrl } from "../config";
 
+const headers = {
+  "Content-Type": "application/json",
+  Accept: "application/json",
+};
+
 export const Session = {
-  create(requestBody) {
-    return fetch(`${baseUrl}/users/sign_in`, {
+  async create(requestBody) {
+    const response = await fetch(`${baseUrl}/users/sign_in`, {
       method: "POST",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers: headers,
       body: JSON.stringify(requestBody),
-    }).then((res) => res.json());
+    });
+    return response.json();
   },
 };
 
 export const CurrentUser = {
-  show() {
-    return fetch(`${baseUrl}/current_user`, {
+  async show() {
+    const response = await fetch(`${baseUrl}/current_user`, {
       method: "GET",
       credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    }).then((res) => res.json());
+      headers: headers,
+    });
+    return response.json();
   },
 };
