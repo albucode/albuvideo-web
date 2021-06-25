@@ -16,6 +16,8 @@ import { SideBar } from "./features/navigation/SideBar";
 const App = () => {
   const dispatch = useDispatch();
 
+  const userEmail = useSelector((state) => state.user.email);
+
   const fetchCurrentUser = async () => {
     const response = await CurrentUser.show();
 

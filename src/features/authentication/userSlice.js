@@ -12,9 +12,9 @@ export const userSlice = createSlice({
   reducers: {
     loadUser: (state, action) => ({
       ...state,
-      emailInitial: action.payload.user?.email[0].toUpperCase(),
       email: action.payload.user?.email || "",
       isLoggedIn: !!action.payload.user?.email,
+      emailInitial: action.payload.user?.email[0].toUpperCase(),
     }),
   },
 });
