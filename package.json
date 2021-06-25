@@ -3,17 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.6.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@fontsource/open-sans": "^4.4.5",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^13.1.9",
+    "framer-motion": "^4",
     "msw": "^0.29.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "redux-mock-store": "^1.5.4"
+    "redux-mock-store": "^1.5.4",
+    "styled-components": "^5.3.0"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
