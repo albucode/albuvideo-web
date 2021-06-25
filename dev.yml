@@ -1,0 +1,6 @@
+name: albuvideo-web
+
+up:
+  - node:
+      version: v14.16.1
+      yarn: 1.22.5

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import PrivateRoute from "./PrivateRoute";
 import { LogInPage } from "./features/authentication/LogInPage";
@@ -11,13 +11,11 @@ import { loadUser } from "./features/authentication/userSlice";
 function App() {
   const dispatch = useDispatch();
 
-  const fetchCurrentUser = () => {
-    CurrentUser.show().then((response) => {
-      dispatch(loadUser(response));
-    });
-  };
+  const fetchCurrentUser = async () => {
+    const response = await CurrentUser.show();
 
-  const userEmail = useSelector((state) => state.user.email);
+    dispatch(loadUser(response));
+  };
 
   useEffect(() => {
     fetchCurrentUser();
@@ -27,7 +25,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/login" component={LogInPage} />
-        <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
+        <PrivateRoute exact path="/dashboard">
           <DashboardPage />
         </PrivateRoute>
       </Switch>
