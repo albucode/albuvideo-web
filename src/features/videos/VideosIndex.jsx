@@ -68,7 +68,7 @@ export const VideosIndex = () => {
               </HStack>
             </Td>
             <TData>{video.status}</TData>
-            <TData>{video.created_at}</TData>
+            <TData>{new Date(video.created_at).getMonth() + "/"  +  new Date(video.created_at).getDay() + "/"  + new Date(video.created_at).getFullYear() + " "  + new Date(video.created_at).getHours() + "h"  + new Date(video.created_at).getMinutes()  }</TData>
             <TData pr={0}>6:10</TData>
             <TData pl={0}>
               <Dots color={theme.colors.grey1} />
