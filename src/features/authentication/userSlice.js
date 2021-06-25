@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
   email: "",
+  emailInitial: "",
   isLoggedIn: true,
 };
 
@@ -13,6 +14,7 @@ export const userSlice = createSlice({
       ...state,
       email: action.payload.user?.email || "",
       isLoggedIn: !!action.payload.user?.email,
+      emailInitial: action.payload.user?.email[0].toUpperCase(),
     }),
   },
 });
