@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import {
-  Box,
   Table,
   Tfoot,
   Thead,

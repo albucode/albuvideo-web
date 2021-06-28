@@ -3,6 +3,7 @@ import counterReducer from "../features/counter/counterSlice";
 import userReducer from "../features/authentication/userSlice";
 import errorAlertReducer from "../features/shared/errorAlertSlice";
 import videoReducer from "../features/videos/videoSlice";
+import accessTokenSlice from "../features/accessTokens/accessTokenSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     user: userReducer,
     errorAlert: errorAlertReducer,
     video: videoReducer,
+    accessToken: accessTokenSlice,
   },
 });

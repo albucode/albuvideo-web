@@ -40,3 +40,17 @@ export const Video = {
     return response.json();
   },
 };
+
+export const AccessTokens = {
+  async index() {
+    const response = await fetch(`${baseUrl}/access_tokens`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.json();
+  },
+};
