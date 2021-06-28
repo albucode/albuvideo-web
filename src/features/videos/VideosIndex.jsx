@@ -21,6 +21,7 @@ import Dots from "../shared/icons/Dots";
 import { useDispatch, useSelector } from "react-redux";
 import { Video } from "../../api/requests";
 import { loadVideos } from "../videos/videoSlice";
+import { PageContainer } from "../shared/PageContainer";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ export const VideosIndex = () => {
   };
 
   return (
-    <Box margin="0 auto" paddingTop="50px">
+    <PageContainer>
       <TopBar sectionName="Videos" />
       <Table
         variant="striped"
@@ -101,7 +102,7 @@ export const VideosIndex = () => {
           </Tr>
         </Tfoot>
       </Table>
-    </Box>
+    </PageContainer>
   );
 };
 

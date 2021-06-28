@@ -1,9 +1,12 @@
 import React from "react";
 
+import { PageContainer } from "../shared/PageContainer";
+import { TopBar } from "../navigation/TopBar";
+
 export const AccessTokensIndex = () => {
   return (
-    <>
-      <p>This is the Access Tokens Index Page</p>
-    </>
+    <PageContainer>
+      <TopBar sectionName="Access Tokens" />
+    </PageContainer>
   );
 };
