@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import styled from "@emotion/styled";
 import {
   Table,
   Tfoot,
@@ -8,7 +7,6 @@ import {
   Td,
   Th,
   Tbody,
-  Text,
   HStack,
 } from "@chakra-ui/react";
 
@@ -24,6 +22,7 @@ import { PageContainer } from "../shared/PageContainer";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
+import formatDate from "../../utils/formatDate";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -38,21 +37,6 @@ export const VideosIndex = () => {
   useEffect(() => {
     fetchVideos();
   }, []);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return (
-      date.getMonth() +
-      "/" +
-      date.getDay() +
-      "/" +
-      date.getFullYear() +
-      " " +
-      date.getHours() +
-      "h" +
-      date.getMinutes()
-    );
-  };
 
   const formatStatus = (status) => {
     return status.charAt(0).toUpperCase() + status.slice(1);

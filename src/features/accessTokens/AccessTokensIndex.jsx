@@ -5,12 +5,13 @@ import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
 import { AccessTokens } from "../../api/requests";
 import { loadAccessTokens } from "./accessTokenSlice";
-import { Table, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import theme from "../../theme/theme";
 import Dots from "../shared/icons/Dots";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
+import formatDate from "../../utils/formatDate";
 
 export const AccessTokensIndex = () => {
   const dispatch = useDispatch();
@@ -25,21 +26,6 @@ export const AccessTokensIndex = () => {
   useEffect(() => {
     fetchAccessTokens();
   }, []);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return (
-      date.getMonth() +
-      "/" +
-      date.getDay() +
-      "/" +
-      date.getFullYear() +
-      " " +
-      date.getHours() +
-      "h" +
-      date.getMinutes()
-    );
-  };
 
   return (
     <PageContainer>
