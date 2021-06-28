@@ -30,14 +30,30 @@ export const VideosIndex = () => {
     dispatch(loadVideos(response));
   };
 
-  const { videos } = useSelector(
-    (state) => state.video
-  );
-
+  const { videos } = useSelector((state) => state.video);
 
   useEffect(() => {
     fetchVideos();
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return (
+      date.getMonth() +
+      "/" +
+      date.getDay() +
+      "/" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      "h" +
+      date.getMinutes()
+    );
+  };
+
+  const formatStatus = (status) => {
+    return status.charAt(0).toUpperCase() + status.slice(1);
+  };
 
   return (
     <Box margin="0 auto" paddingTop="50px">
@@ -59,22 +75,25 @@ export const VideosIndex = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {videos.map((video) =>
-          <Tr key={video.id}>
-            <Td>
-              <HStack>
-                <Thumbnail icon={<Play />} inputColor={theme.colors.magenta} />
-                <VideoTitle>{video.title}</VideoTitle>
-              </HStack>
-            </Td>
-            <TData>{video.status}</TData>
-            <TData>{new Date(video.created_at).getMonth() + "/"  +  new Date(video.created_at).getDay() + "/"  + new Date(video.created_at).getFullYear() + " "  + new Date(video.created_at).getHours() + "h"  + new Date(video.created_at).getMinutes()  }</TData>
-            <TData pr={0}>6:10</TData>
-            <TData pl={0}>
-              <Dots color={theme.colors.grey1} />
-            </TData>
-          </Tr>
-          )}
+          {videos.map((video) => (
+            <Tr key={video.id}>
+              <Td>
+                <HStack>
+                  <Thumbnail
+                    icon={<Play />}
+                    inputColor={theme.colors.magenta}
+                  />
+                  <VideoTitle>{video.title}</VideoTitle>
+                </HStack>
+              </Td>
+              <TData>{formatStatus(video.status)}</TData>
+              <TData>{formatDate(video.created_at)}</TData>
+              <TData pr={0}>6:10</TData>
+              <TData pl={0}>
+                <Dots color={theme.colors.grey1} />
+              </TData>
+            </Tr>
+          ))}
         </Tbody>
         <Tfoot>
           <Tr>
