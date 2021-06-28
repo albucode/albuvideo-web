@@ -71,7 +71,7 @@ export const VideosIndex = () => {
             <THeader>Status</THeader>
             <THeader>Created at</THeader>
             <THeader pr={0}>Duration </THeader>
-            <THeader pr={0}>{""}</THeader>
+            <THeader pl={0}>{""}</THeader>
           </Tr>
         </Thead>
         <Tbody>
