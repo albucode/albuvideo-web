@@ -54,3 +54,17 @@ export const AccessTokens = {
     return response.json();
   },
 };
+
+export const SignatureKeys = {
+  async index() {
+    const response = await fetch(`${baseUrl}/signature_keys`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    return response.json();
+  },
+};

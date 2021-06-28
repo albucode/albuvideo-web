@@ -4,6 +4,7 @@ import userReducer from "../features/authentication/userSlice";
 import errorAlertReducer from "../features/shared/errorAlertSlice";
 import videoReducer from "../features/videos/videoSlice";
 import accessTokenSlice from "../features/accessTokens/accessTokenSlice";
+import signatureKeySlice from "../features/signatureKeys/signatureKeysSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     errorAlert: errorAlertReducer,
     video: videoReducer,
     accessToken: accessTokenSlice,
+    signatureKey: signatureKeySlice,
   },
 });
