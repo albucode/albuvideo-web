@@ -8,7 +8,9 @@ import { loadAccessTokens } from "./accessTokenSlice";
 import { Table, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import theme from "../../theme/theme";
 import Dots from "../shared/icons/Dots";
-import styled from "@emotion/styled";
+import TableHeader from "../shared/TableHeader";
+import TableData from "../shared/TableData";
+import ElementName from "../shared/ElementName";
 
 export const AccessTokensIndex = () => {
   const dispatch = useDispatch();
@@ -51,21 +53,23 @@ export const AccessTokensIndex = () => {
       >
         <Thead>
           <Tr>
-            <THeader>Name</THeader>
-            <THeader pr={0}>Created at</THeader>
-            <THeader pl={0}>{""}</THeader>
+            <TableHeader>Name</TableHeader>
+            <TableHeader>Created at</TableHeader>
+            <TableHeader pr={0}>Last used at</TableHeader>
+            <TableHeader pl={0}>{""}</TableHeader>
           </Tr>
         </Thead>
         <Tbody>
           {accessTokens.map((token) => (
             <Tr key={token.id}>
               <Td>
-                <VideoTitle>{token.name}</VideoTitle>
+                <ElementName>{token.name}</ElementName>
               </Td>
-              <TData pr={0}>{formatDate(token.created_at)}</TData>
-              <TData pl={0}>
+              <TableData>{formatDate(token.created_at)}</TableData>
+              <TableData pr={0}>{formatDate(token.created_at)}</TableData>
+              <TableData pl={0}>
                 <Dots color={theme.colors.grey1} />
-              </TData>
+              </TableData>
             </Tr>
           ))}
         </Tbody>
@@ -78,22 +82,3 @@ export const AccessTokensIndex = () => {
     </PageContainer>
   );
 };
-
-const THeader = styled(Th)`
-  text-transform: capitalize;
-  font-size: 18px;
-  font-weight: 400;
-  color: ${(props) => props.theme.colors.grey1};
-`;
-
-const TData = styled(Td)`
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.black};
-`;
-
-const VideoTitle = styled(Text)`
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.black};
-  font-weight: 700;
-  padding-left: 18px;
-`;

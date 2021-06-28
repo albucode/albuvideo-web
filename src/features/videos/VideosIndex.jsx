@@ -21,6 +21,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Video } from "../../api/requests";
 import { loadVideos } from "../videos/videoSlice";
 import { PageContainer } from "../shared/PageContainer";
+import TableHeader from "../shared/TableHeader";
+import TableData from "../shared/TableData";
+import ElementName from "../shared/ElementName";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -67,11 +70,11 @@ export const VideosIndex = () => {
       >
         <Thead>
           <Tr>
-            <THeader>Title</THeader>
-            <THeader>Status</THeader>
-            <THeader>Created at</THeader>
-            <THeader pr={0}>Duration </THeader>
-            <THeader pl={0}>{""}</THeader>
+            <TableHeader>Title</TableHeader>
+            <TableHeader>Status</TableHeader>
+            <TableHeader>Created at</TableHeader>
+            <TableHeader pr={0}>Duration </TableHeader>
+            <TableHeader pl={0}>{""}</TableHeader>
           </Tr>
         </Thead>
         <Tbody>
@@ -83,15 +86,15 @@ export const VideosIndex = () => {
                     icon={<Play />}
                     inputColor={theme.colors.magenta}
                   />
-                  <VideoTitle>{video.title}</VideoTitle>
+                  <ElementName paddingLeft="18px">{video.title}</ElementName>
                 </HStack>
               </Td>
-              <TData>{formatStatus(video.status)}</TData>
-              <TData>{formatDate(video.created_at)}</TData>
-              <TData pr={0}>6:10</TData>
-              <TData pl={0}>
+              <TableData>{formatStatus(video.status)}</TableData>
+              <TableData>{formatDate(video.created_at)}</TableData>
+              <TableData pr={0}>6:10</TableData>
+              <TableData pl={0}>
                 <Dots color={theme.colors.grey1} />
-              </TData>
+              </TableData>
             </Tr>
           ))}
         </Tbody>
@@ -104,22 +107,3 @@ export const VideosIndex = () => {
     </PageContainer>
   );
 };
-
-const THeader = styled(Th)`
-  text-transform: capitalize;
-  font-size: 18px;
-  font-weight: 400;
-  color: ${(props) => props.theme.colors.grey1};
-`;
-
-const TData = styled(Td)`
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.black};
-`;
-
-const VideoTitle = styled(Text)`
-  font-size: 14px;
-  color: ${(props) => props.theme.colors.black};
-  font-weight: 700;
-  padding-left: 18px;
-`;
