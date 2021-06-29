@@ -42,6 +42,7 @@ const App = () => {
             <Route exact path="/login">
               <Redirect to="/dashboard" /> }
             </Route>
+
             <PrivateRoute exact path="/dashboard">
               <Dashboard />
             </PrivateRoute>

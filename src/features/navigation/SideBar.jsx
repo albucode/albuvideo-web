@@ -11,7 +11,6 @@ export const SideBar = () => {
       <Center>
         <Logo />
       </Center>
-
       <Menu />
     </Container>
   );

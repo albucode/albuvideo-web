@@ -2,16 +2,18 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Box, Text } from "@chakra-ui/react";
 
+
+import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
 
 export const Dashboard = () => {
   return (
-    <Box margin="0 auto" paddingTop="50px">
+    <PageContainer>
       <TopBar sectionName="Dashboard" />
       <ContentContainer>
         <Title>Content</Title>
       </ContentContainer>
-    </Box>
+    </PageContainer>
   );
 };
 
