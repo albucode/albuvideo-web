@@ -45,7 +45,7 @@ export const LogInPage = () => {
         history.push("/dashboard");
       } else {
         dispatch(loadErrorMessage(response.error));
-        dispatch(displayErrorAlert(true));
+        dispatch(displayErrorAlert());
       }
     });
   };
@@ -54,7 +54,7 @@ export const LogInPage = () => {
     <PageBackground>
       <ImageContainer>
         <Center height="100vh">
-          <Image src="computer-work.png" />
+          <Image src="/images/computer-work.png" />
         </Center>
       </ImageContainer>
       <FormBackground>
@@ -93,7 +93,9 @@ const PageBackground = styled(Box)`
 const FormBackground = styled(Box)`
   background-color: white;
   border-radius: 12px;
+  min-width: 300px;
   width: 30%;
+  min-height: 600px;
   height: 90%;
   margin-top: 32px;
   margin-right: 56px;

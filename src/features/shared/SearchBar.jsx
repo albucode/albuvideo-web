@@ -7,8 +7,7 @@ export const SearchBar = () => {
     <Center marginRight="40px">
       <InputGroup borderColor="white">
         <InputLeftElement
-          pr="16px"
-          pl="16px"
+          px="16px"
           pointerEvents="none"
           children={<Magnifier />}
           height="60px"

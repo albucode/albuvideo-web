@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Box, VStack } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 
 import { Menu } from "./Menu";
 import { Logo } from "../shared/Logo";
@@ -8,10 +8,9 @@ import { Logo } from "../shared/Logo";
 export const SideBar = () => {
   return (
     <Container>
-      <VStack>
+      <Center>
         <Logo />
-      </VStack>
-
+      </Center>
       <Menu />
     </Container>
   );

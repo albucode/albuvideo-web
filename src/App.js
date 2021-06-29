@@ -16,13 +16,13 @@ import { SideBar } from "./features/navigation/SideBar";
 const App = () => {
   const dispatch = useDispatch();
 
-  const fetchCurrentUser = () => {
-    CurrentUser.show().then((response) => {
-      dispatch(loadUser(response));
-    });
-  };
-
   const userEmail = useSelector((state) => state.user.email);
+
+  const fetchCurrentUser = async () => {
+    const response = await CurrentUser.show();
+
+    dispatch(loadUser(response));
+  };
 
   useEffect(() => {
     fetchCurrentUser();
@@ -42,16 +42,17 @@ const App = () => {
             <Route exact path="/login">
               <Redirect to="/dashboard" /> }
             </Route>
-            <PrivateRoute exact path="/dashboard" userEmail={userEmail}>
+
+            <PrivateRoute exact path="/dashboard">
               <Dashboard />
             </PrivateRoute>
-            <PrivateRoute exact path="/videos" userEmail={userEmail}>
+            <PrivateRoute exact path="/videos">
               <VideosIndex />
             </PrivateRoute>
-            <PrivateRoute exact path="/access-tokens" userEmail={userEmail}>
+            <PrivateRoute exact path="/access-tokens">
               <AccessTokensIndex />
             </PrivateRoute>
-            <PrivateRoute exact path="/signature-keys" userEmail={userEmail}>
+            <PrivateRoute exact path="/signature-keys">
               <SignatureKeysIndex />
             </PrivateRoute>
           </Switch>
