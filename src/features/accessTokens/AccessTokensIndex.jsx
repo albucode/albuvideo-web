@@ -25,7 +25,7 @@ export const AccessTokensIndex = () => {
 
   useEffect(() => {
     fetchAccessTokens();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>

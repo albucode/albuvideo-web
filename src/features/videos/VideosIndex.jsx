@@ -36,7 +36,7 @@ export const VideosIndex = () => {
 
   useEffect(() => {
     fetchVideos();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const formatStatus = (status) => {
     return status.charAt(0).toUpperCase() + status.slice(1);

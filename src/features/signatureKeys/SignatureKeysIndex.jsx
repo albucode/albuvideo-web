@@ -25,7 +25,7 @@ export const SignatureKeysIndex = () => {
 
   useEffect(() => {
     fetchSignatureKeys();
-  }, []);
+  },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>
