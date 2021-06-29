@@ -1,9 +1,9 @@
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return (
-    date.getMonth() +
+    (date.getMonth() + 1) +
     "/" +
-    date.getDay() +
+    date.getDate() +
     "/" +
     date.getFullYear() +
     " " +

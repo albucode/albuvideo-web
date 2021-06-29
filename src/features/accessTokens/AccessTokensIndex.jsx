@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 
 import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
 import { AccessTokens } from "../../api/requests";
 import { loadAccessTokens } from "./accessTokenSlice";
-import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import theme from "../../theme/theme";
 import Dots from "../shared/icons/Dots";
 import TableHeader from "../shared/TableHeader";
@@ -34,7 +34,7 @@ export const AccessTokensIndex = () => {
         variant="striped"
         colorScheme="table"
         backgroundColor="white"
-        marginRight="0px"
+        marginRight="0"
         borderRadius="12px"
       >
         <Thead>
