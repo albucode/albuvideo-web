@@ -69,3 +69,14 @@ export const SignatureKeys = {
     return response.json();
   },
 };
+
+export const WebhookSubscriptions = {
+  async index() {
+    const response = await fetch(`${baseUrl}/webhook_subscriptions`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};

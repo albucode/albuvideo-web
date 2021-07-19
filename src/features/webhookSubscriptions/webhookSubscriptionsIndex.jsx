@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
-import { SignatureKeys } from "../../api/requests";
-import { loadSignatureKeys } from "./signatureKeysSlice";
+import { WebhookSubscriptions } from "../../api/requests";
+import { loadWebhookSubscriptions } from "./webhookSubscriptionsSlice";
 import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import theme from "../../theme/theme";
 import Dots from "../shared/icons/Dots";
@@ -13,51 +13,54 @@ import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
 
-export const SignatureKeysIndex = () => {
+export const WebhookSubscriptionsIndex = () => {
   const dispatch = useDispatch();
 
-  const fetchSignatureKeys = async () => {
-    const response = await SignatureKeys.index();
-    dispatch(loadSignatureKeys(response));
+  const fetchWebhookSubscriptions = async () => {
+    const response = await WebhookSubscriptions.index();
+    dispatch(loadWebhookSubscriptions(response));
   };
 
-  const { signatureKeys } = useSelector((state) => state.signatureKey);
+  const { webhookSubscriptions } = useSelector(
+    (state) => state.webhookSubscription
+  );
 
   useEffect(() => {
-    fetchSignatureKeys();
+    fetchWebhookSubscriptions();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>
-      <TopBar sectionName="SignatureKeys" />
+      <TopBar sectionName="Webhook Subscriptions" />
       <Table
         variant="striped"
         colorScheme="table"
         backgroundColor="white"
-        marginRight="0px"
+        marginRight="0"
         borderRadius="12px"
       >
         <Thead>
           <Tr>
-            <TableHeader>Name</TableHeader>
-            <TableHeader>Created at</TableHeader>
+            <TableHeader>Topic</TableHeader>
+            <TableHeader>URL</TableHeader>
             <TableHeader pr={0}>Last used at</TableHeader>
             <TableHeader pl={0}>{""}</TableHeader>
           </Tr>
         </Thead>
         <Tbody>
-          {signatureKeys.map((key) => (
-            <Tr key={key.id}>
-              <Td>
-                <ElementName>{key.name}</ElementName>
-              </Td>
-              <TableData>{formatDate(key.created_at)}</TableData>
-              <TableData pr={0}>{formatDate(key.created_at)}</TableData>
-              <TableData pl={0}>
-                <Dots color={theme.colors.grey1} />
-              </TableData>
-            </Tr>
-          ))}
+          {webhookSubscriptions &&
+            webhookSubscriptions.map((webhook) => (
+              <Tr key={webhook.id}>
+                <Td>
+                  <ElementName>{webhook.topic}</ElementName>
+                </Td>
+                <TableData>{webhook.url}</TableData>
+                <TableData pr={0}>{formatDate(webhook.created_at)}</TableData>
+                <TableData pl={0}>
+                  <Dots color={theme.colors.grey1} />
+                </TableData>
+              </Tr>
+            ))}
         </Tbody>
         <Tfoot>
           <Tr>

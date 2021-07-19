@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Box, Text } from "@chakra-ui/react";
 
-
 import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
 

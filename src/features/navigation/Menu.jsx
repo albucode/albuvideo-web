@@ -7,6 +7,7 @@ import Speedometer from "../shared/icons/Speedometer";
 import Video from "../shared/icons/Video";
 import Ticket from "../shared/icons/Ticket";
 import DoubleCheck from "../shared/icons/DoubleCheck";
+import Web from "../shared/icons/Web";
 
 export const Menu = () => {
   return (
@@ -26,6 +27,10 @@ export const Menu = () => {
       <Link to="/signature-keys">
         <DoubleCheck marginRight={"24px"} />
         Signature keys
+      </Link>
+      <Link to="/webhook-subscriptions">
+        <Web marginRight={"24px"} />
+        Webhook subscriptions
       </Link>
     </MenuContainer>
   );
