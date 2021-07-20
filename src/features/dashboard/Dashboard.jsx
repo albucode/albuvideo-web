@@ -41,17 +41,17 @@ export const Dashboard = () => {
   );
 };
 
-const ContentContainer = styled(Box)`
+const Container = styled(Box)`
   background-color: ${(props) => props.theme.colors.white};
-  height: 300px;
   border-radius: 20px;
   padding: 32px;
 `;
 
-const StatsContainer = styled(Box)`
-  background-color: ${(props) => props.theme.colors.white};
-  border-radius: 20px;
-  padding: 32px;
+const ContentContainer = styled(Container)`
+  height: 300px;
+`;
+
+const StatsContainer = styled(Container)`
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
