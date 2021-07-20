@@ -5,8 +5,8 @@ import { Tag } from "@chakra-ui/react";
 export const IconTag = ({ icon, inputColor }) => {
   const Square = styled(Tag)`
     background-color: ${inputColor};
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
     color: white;
     display: flex;
     justify-content: center;

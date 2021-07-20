@@ -6,7 +6,9 @@ import { PageContainer } from "../shared/PageContainer";
 import { TopBar } from "../navigation/TopBar";
 import { Stats } from "./Stats";
 import Users from "../shared/icons/Users";
+import Inbox from "../shared/icons/Inbox";
 import theme from "../../theme/theme";
+import Calendar from "../shared/icons/Calendar";
 
 export const Dashboard = () => {
   return (
@@ -21,6 +23,18 @@ export const Dashboard = () => {
           data={"23h 43m"}
           icon={<Users />}
           inputColor={theme.colors.cyan}
+        />
+        <Stats
+          title={"Streamed last 24h"}
+          data={"13h 02m"}
+          icon={<Calendar />}
+          inputColor={theme.colors.magenta}
+        />
+        <Stats
+          title={"Total streamed"}
+          data={"23h 43m"}
+          icon={<Inbox />}
+          inputColor={theme.colors.blue}
         />
       </StatsContainer>
     </PageContainer>
@@ -39,6 +53,8 @@ const StatsContainer = styled(Box)`
   border-radius: 20px;
   padding: 32px;
   margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Title = styled(Text)`
