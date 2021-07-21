@@ -17,6 +17,7 @@ const theme = extendTheme({
     grey6: "#EDF1F5",
     grey7: "#E5E5E5",
     magenta: "#E328AF",
+    cyan: "#00CFFD",
   },
 });
 

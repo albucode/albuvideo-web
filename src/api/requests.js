@@ -80,3 +80,14 @@ export const WebhookSubscriptions = {
     return response.json();
   },
 };
+
+export const DashboardStats = {
+  async show() {
+    const response = await fetch(`${baseUrl}/stats`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};
