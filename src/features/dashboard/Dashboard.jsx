@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { Box, Text } from "@chakra-ui/react";
 
@@ -9,8 +9,26 @@ import Users from "../shared/icons/Users";
 import Inbox from "../shared/icons/Inbox";
 import theme from "../../theme/theme";
 import Calendar from "../shared/icons/Calendar";
+import { useDispatch, useSelector } from "react-redux";
+import { loadtimeStreamed } from "./dashboardSlice";
+import { DashboardStats } from "../../api/requests";
 
 export const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  const fetchDashboardStats = async () => {
+    const response = await DashboardStats.show();
+    dispatch(loadtimeStreamed(response));
+  };
+
+  const { timeStreamed, timeStored, timeStreamedLast24h } = useSelector(
+    (state) => state.dashboard
+  );
+
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <PageContainer>
       <TopBar sectionName="Dashboard" />
@@ -20,19 +38,19 @@ export const Dashboard = () => {
       <StatsContainer>
         <Stats
           title={"Total streamed"}
-          data={"23h 43m"}
+          data={timeStreamed}
           icon={<Users />}
           inputColor={theme.colors.cyan}
         />
         <Stats
           title={"Streamed last 24h"}
-          data={"13h 02m"}
+          data={timeStreamedLast24h}
           icon={<Calendar />}
           inputColor={theme.colors.magenta}
         />
         <Stats
-          title={"Total streamed"}
-          data={"23h 43m"}
+          title={"Total stored"}
+          data={timeStored}
           icon={<Inbox />}
           inputColor={theme.colors.blue}
         />

@@ -6,6 +6,7 @@ import videoReducer from "../features/videos/videoSlice";
 import accessTokenSlice from "../features/accessTokens/accessTokenSlice";
 import signatureKeySlice from "../features/signatureKeys/signatureKeysSlice";
 import webhookSubscriptionsSlice from "../features/webhookSubscriptions/webhookSubscriptionsSlice";
+import dashboardSlice from "../features/dashboard/dashboardSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     accessToken: accessTokenSlice,
     signatureKey: signatureKeySlice,
     webhookSubscription: webhookSubscriptionsSlice,
+    dashboard: dashboardSlice,
   },
 });
