@@ -31,7 +31,7 @@ export const WebhookSubscriptionsIndex = () => {
 
   return (
     <PageContainer>
-      <TopBar sectionName="Webhook Subscriptions" />
+      <TopBar sectionName="Webhooks" />
       <Table
         variant="striped"
         colorScheme="table"
