@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import formatToHours from "../../utils/formatToHours";
 
 const INITIAL_STATE = {
   timeStreamed: 0,
@@ -12,9 +13,11 @@ export const dashboardSlice = createSlice({
   reducers: {
     loadtimeStreamed: (state, action) => ({
       ...state,
-      timeStreamed: action.payload.stats.time_streamed,
-      timeStored: action.payload.stats.time_stored,
-      timeStreamedLast24h: action.payload.stats.time_streamed_last_24h,
+      timeStreamed: formatToHours(action.payload.stats.time_streamed),
+      timeStored: formatToHours(action.payload.stats.time_stored),
+      timeStreamedLast24h: formatToHours(
+        action.payload.stats.time_streamed_last_24h
+      ),
     }),
   },
 });
