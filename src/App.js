@@ -32,12 +32,7 @@ const App = () => {
   return userEmail ? (
     <>
       <BrowserRouter>
-        <Flex
-          maxWidth="1530px"
-          background="#F6F9FE"
-          minH="100vh"
-          margin="0 auto"
-        >
+        <Flex background="#F6F9FE" minH="100vh" margin="0 auto">
           <SideBar />
           <Switch>
             <Route exact path="/login">

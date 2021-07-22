@@ -30,7 +30,7 @@ export const Menu = () => {
       </Link>
       <Link to="/webhook-subscriptions">
         <Web marginRight={"24px"} />
-        Webhook subscriptions
+        Webhooks
       </Link>
     </MenuContainer>
   );
