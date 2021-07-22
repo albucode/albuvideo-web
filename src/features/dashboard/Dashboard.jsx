@@ -12,6 +12,7 @@ import Calendar from "../shared/icons/Calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { loadtimeStreamed } from "./dashboardSlice";
 import { DashboardStats } from "../../api/requests";
+import { StatsContainer } from "../shared/StatsContainer";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
@@ -59,20 +60,11 @@ export const Dashboard = () => {
   );
 };
 
-const Container = styled(Box)`
+const ContentContainer = styled(Box)`
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 20px;
   padding: 32px;
-`;
-
-const ContentContainer = styled(Container)`
   height: 300px;
-`;
-
-const StatsContainer = styled(Container)`
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: space-between;
 `;
 
 const Title = styled(Text)`
