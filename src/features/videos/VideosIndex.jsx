@@ -9,6 +9,7 @@ import {
   Tbody,
   HStack,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 import theme from "../../../src/theme/theme";
 import { TopBar } from "../navigation/TopBar";
@@ -67,7 +68,9 @@ export const VideosIndex = () => {
                     icon={<Play />}
                     inputColor={theme.colors.magenta}
                   />
-                  <ElementName paddingLeft="18px">{video.title}</ElementName>
+                  <Link to={`/videos/${video.id}`}>
+                    <ElementName paddingLeft="18px">{video.title}</ElementName>
+                  </Link>
                 </HStack>
               </Td>
               <TableData>{formatStatus(video.status)}</TableData>
