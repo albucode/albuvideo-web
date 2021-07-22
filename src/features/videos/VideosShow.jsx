@@ -26,7 +26,6 @@ export const VideosShow = () => {
     fetchVideos();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
@@ -44,7 +43,7 @@ export const VideosShow = () => {
           inputColor={theme.colors.magenta}
         />
         <Stats
-          title={"Total stored"}
+          title={"Times watched"}
           data={"234,506"}
           icon={<Play />}
           inputColor={theme.colors.blue}

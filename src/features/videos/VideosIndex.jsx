@@ -23,6 +23,7 @@ import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
+import formatStatus from "../../utils/formatStatus";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -37,10 +38,6 @@ export const VideosIndex = () => {
   useEffect(() => {
     fetchVideos();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const formatStatus = (status) => {
-    return status.charAt(0).toUpperCase() + status.slice(1);
-  };
 
   return (
     <PageContainer>
