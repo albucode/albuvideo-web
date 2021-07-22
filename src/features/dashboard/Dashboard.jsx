@@ -32,9 +32,6 @@ export const Dashboard = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Dashboard" />
-      <ContentContainer>
-        <Title>Content</Title>
-      </ContentContainer>
       <StatsContainer>
         <Stats
           title={"Total streamed"}
@@ -55,6 +52,9 @@ export const Dashboard = () => {
           inputColor={theme.colors.blue}
         />
       </StatsContainer>
+      <ContentContainer>
+        <Title>Content</Title>
+      </ContentContainer>
     </PageContainer>
   );
 };
@@ -70,7 +70,7 @@ const ContentContainer = styled(Container)`
 `;
 
 const StatsContainer = styled(Container)`
-  margin-top: 30px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
 `;
