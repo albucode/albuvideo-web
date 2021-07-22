@@ -13,6 +13,7 @@ import { AccessTokensIndex } from "./features/accessTokens/AccessTokensIndex";
 import { SignatureKeysIndex } from "./features/signatureKeys/SignatureKeysIndex";
 import { SideBar } from "./features/navigation/SideBar";
 import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webhookSubscriptionsIndex";
+import { VideosShow } from "./features/videos/VideosShow";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,9 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/videos">
               <VideosIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/videos/:id">
+              <VideosShow />
             </PrivateRoute>
             <PrivateRoute exact path="/access-tokens">
               <AccessTokensIndex />
