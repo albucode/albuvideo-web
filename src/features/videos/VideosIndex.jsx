@@ -18,7 +18,7 @@ import { Thumbnail } from "../shared/Thumbnail";
 import Dots from "../shared/icons/Dots";
 import { useDispatch, useSelector } from "react-redux";
 import { Video } from "../../api/requests";
-import { loadVideos } from "../videos/videoSlice";
+import { loadVideos, loadVideoId } from "../videos/videoSlice";
 import { PageContainer } from "../shared/PageContainer";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
@@ -69,7 +69,12 @@ export const VideosIndex = () => {
                     inputColor={theme.colors.magenta}
                   />
                   <Link to={`/videos/${video.id}`}>
-                    <ElementName paddingLeft="18px">{video.title}</ElementName>
+                    <ElementName
+                      onClick={() => dispatch(loadVideoId(video.id))}
+                      paddingLeft="18px"
+                    >
+                      {video.title}
+                    </ElementName>
                   </Link>
                 </HStack>
               </Td>
