@@ -40,6 +40,15 @@ export const Video = {
     });
     return response.json();
   },
+
+  async show(videoId) {
+    const response = await fetch(`${baseUrl}/videos/${videoId}`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
 };
 
 export const AccessTokens = {

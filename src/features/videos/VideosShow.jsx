@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import theme from "../../../src/theme/theme";
 import { Video } from "../../api/requests";
-import { loadVideos } from "../videos/videoSlice";
+import { loadSelectedVideo } from "../videos/videoSlice";
 import { PageContainer } from "../shared/PageContainer";
 import { StatsContainer } from "../shared/StatsContainer";
 import { Stats } from "../dashboard/Stats";
@@ -15,15 +15,15 @@ import { TopBar } from "../navigation/TopBar";
 export const VideosShow = () => {
   const dispatch = useDispatch();
 
-  const fetchVideos = async () => {
-    const response = await Video.index();
-    dispatch(loadVideos(response));
+  const { selectedVideoId } = useSelector((state) => state.video);
+
+  const fetchVideo = async () => {
+    const response = await Video.show(selectedVideoId);
+    dispatch(loadSelectedVideo(response));
   };
 
-  const { videos } = useSelector((state) => state.video);
-
   useEffect(() => {
-    fetchVideos();
+    fetchVideo();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

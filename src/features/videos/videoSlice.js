@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const INITIAL_STATE = {
   videos: [],
   selectedVideoId: "",
+  selectedVideo: {},
 };
 
 export const videoSlice = createSlice({
@@ -17,9 +18,14 @@ export const videoSlice = createSlice({
       ...state,
       selectedVideoId: action.payload,
     }),
+    loadSelectedVideo: (state, action) => ({
+      ...state,
+      selectedVideo: action.payload.video,
+    }),
   },
 });
 
-export const { loadVideos, loadVideoId } = videoSlice.actions;
+export const { loadVideos, loadVideoId, loadSelectedVideo } =
+  videoSlice.actions;
 
 export default videoSlice.reducer;
