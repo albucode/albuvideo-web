@@ -16,6 +16,7 @@ import Play from "../shared/icons/Play";
 import { TopBar } from "../navigation/TopBar";
 import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
+import Dots from "../shared/icons/Dots";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -37,12 +38,15 @@ export const VideosShow = () => {
       <TopBar sectionName="Video" />
       <Well>
         <VideoTitle>{selectedVideo.title}</VideoTitle>
-        <Tag
-          backgroundColor={statusToColor(selectedVideo.status)}
-          color="white"
-        >
-          {selectedVideo.status && formatStatus(selectedVideo.status)}
-        </Tag>
+        <Box marginLeft="auto">
+          <Tag
+            backgroundColor={statusToColor(selectedVideo.status)}
+            color="white"
+          >
+            {selectedVideo.status && formatStatus(selectedVideo.status)}
+          </Tag>
+          <Dots color={theme.colors.grey1} />
+        </Box>
       </Well>
       <StatsContainer>
         <Stats
