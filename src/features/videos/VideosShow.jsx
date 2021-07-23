@@ -13,6 +13,7 @@ import Users from "../shared/icons/Users";
 import Calendar from "../shared/icons/Calendar";
 import Play from "../shared/icons/Play";
 import { TopBar } from "../navigation/TopBar";
+import statusToColor from "../../utils/statusToColor";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -30,25 +31,15 @@ export const VideosShow = () => {
     fetchVideo();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const tagColor = (videoStatus) => {
-    switch (videoStatus) {
-      default:
-        return theme.colors.cyan;
-        break;
-      case "ready":
-        return theme.colors.blue;
-        break;
-      case "failed":
-        return theme.colors.red;
-    }
-  };
-
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
       <Well>
         <VideoTitle>{selectedVideo.title}</VideoTitle>
-        <Tag backgroundColor={tagColor(selectedVideo.status)} color="white">
+        <Tag
+          backgroundColor={statusToColor(selectedVideo.status)}
+          color="white"
+        >
           {selectedVideo.status}
         </Tag>
       </Well>
