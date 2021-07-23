@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Box, Text, Tag } from "@chakra-ui/react";
+import { Box, Text, Tag, Center } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video } from "../../api/requests";
@@ -38,15 +38,12 @@ export const VideosShow = () => {
       <TopBar sectionName="Video" />
       <Well>
         <VideoTitle>{selectedVideo.title}</VideoTitle>
-        <Box marginLeft="auto">
-          <Tag
-            backgroundColor={statusToColor(selectedVideo.status)}
-            color="white"
-          >
+        <Center marginLeft="auto">
+          <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
-          </Tag>
+          </StatusTag>
           <Dots color={theme.colors.grey1} />
-        </Box>
+        </Center>
       </Well>
       <StatsContainer>
         <Stats
@@ -78,10 +75,19 @@ const Well = styled(Box)`
   padding: 32px;
   margin-bottom: 30px;
   display: flex;
+  max-height: 105px;
 `;
 
 const VideoTitle = styled(Text)`
   color: ${(props) => props.theme.colors.black};
   font-weight: 700;
   font-size: 24px;
+`;
+
+const StatusTag = styled(Tag)`
+  color: white;
+  margin-right: 32px;
+  height: 52px;
+  font-weight: 600;
+  font-size: 18px;
 `;
