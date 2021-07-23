@@ -17,6 +17,7 @@ import { TopBar } from "../navigation/TopBar";
 import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
 import Dots from "../shared/icons/Dots";
+import formatToHours from "../../utils/formatToHours";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -48,13 +49,13 @@ export const VideosShow = () => {
       <StatsContainer>
         <Stats
           title={"Total streamed"}
-          data={"23h 43"}
+          data={formatToHours(selectedVideo.total_stream_time)}
           icon={<Users />}
           inputColor={theme.colors.cyan}
         />
         <Stats
           title={"Streamed last 24h"}
-          data={"13h 02"}
+          data={formatToHours(selectedVideo.stream_time_last_24h)}
           icon={<Calendar />}
           inputColor={theme.colors.magenta}
         />
