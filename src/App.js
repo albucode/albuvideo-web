@@ -46,7 +46,7 @@ const App = () => {
             <PrivateRoute exact path="/videos">
               <VideosIndex />
             </PrivateRoute>
-            <PrivateRoute exact path="/videos/:id">
+            <PrivateRoute exact path="/videos/:videoId">
               <VideosShow />
             </PrivateRoute>
             <PrivateRoute exact path="/access-tokens">

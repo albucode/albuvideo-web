@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Box, Text, Tag } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video } from "../../api/requests";
-import { loadSelectedVideo } from "../videos/videoSlice";
+import { loadSelectedVideo } from "./videoSlice";
 import { PageContainer } from "../shared/PageContainer";
 import { StatsContainer } from "../shared/StatsContainer";
 import { Stats } from "../dashboard/Stats";
@@ -14,16 +15,16 @@ import Calendar from "../shared/icons/Calendar";
 import Play from "../shared/icons/Play";
 import { TopBar } from "../navigation/TopBar";
 import statusToColor from "../../utils/statusToColor";
+import formatStatus from "../../utils/formatStatus";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
+  const { videoId } = useParams();
 
-  const { selectedVideoId, selectedVideo } = useSelector(
-    (state) => state.video
-  );
+  const { selectedVideo } = useSelector((state) => state.video);
 
   const fetchVideo = async () => {
-    const response = await Video.show(selectedVideoId);
+    const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
   };
 
@@ -40,7 +41,7 @@ export const VideosShow = () => {
           backgroundColor={statusToColor(selectedVideo.status)}
           color="white"
         >
-          {selectedVideo.status}
+          {selectedVideo.status && formatStatus(selectedVideo.status)}
         </Tag>
       </Well>
       <StatsContainer>
