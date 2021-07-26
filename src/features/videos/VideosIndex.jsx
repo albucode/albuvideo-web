@@ -64,16 +64,15 @@ export const VideosIndex = () => {
             <Tr key={video.id}>
               <Td>
                 <Link to={`/videos/${video.id}`}>
-                <HStack>
-                  <Thumbnail
-                    icon={<Play />}
-                    inputColor={theme.colors.magenta}
-                  />
+                  <HStack>
+                    <Thumbnail
+                      icon={<Play />}
+                      inputColor={theme.colors.magenta}
+                    />
 
                     <ElementName paddingLeft="18px">{video.title}</ElementName>
-
-                </HStack>
-              </Link>
+                  </HStack>
+                </Link>
               </Td>
               <TableData>{formatStatus(video.status)}</TableData>
               <TableData>{formatDate(video.created_at)}</TableData>

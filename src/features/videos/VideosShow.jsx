@@ -18,6 +18,7 @@ import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
 import Dots from "../shared/icons/Dots";
 import formatToHours from "../../utils/formatToHours";
+import { TimeStreamedChart } from "./TimeStreamedChart";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ export const VideosShow = () => {
           icon={<Play />}
           inputColor={theme.colors.blue}
         />
+      </StatsContainer>
+      <StatsContainer>
+        <TimeStreamedChart />
       </StatsContainer>
     </PageContainer>
   );
