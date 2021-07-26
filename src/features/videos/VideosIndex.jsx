@@ -63,15 +63,17 @@ export const VideosIndex = () => {
           {videos.map((video) => (
             <Tr key={video.id}>
               <Td>
+                <Link to={`/videos/${video.id}`}>
                 <HStack>
                   <Thumbnail
                     icon={<Play />}
                     inputColor={theme.colors.magenta}
                   />
-                  <Link to={`/videos/${video.id}`}>
+
                     <ElementName paddingLeft="18px">{video.title}</ElementName>
-                  </Link>
+
                 </HStack>
+              </Link>
               </Td>
               <TableData>{formatStatus(video.status)}</TableData>
               <TableData>{formatDate(video.created_at)}</TableData>
