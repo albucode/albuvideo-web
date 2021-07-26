@@ -86,6 +86,7 @@ const VideoTitle = styled(Text)`
 `;
 
 const StatusTag = styled(Tag)`
+  padding: 12px;
   color: white;
   margin-right: 32px;
   height: 52px;
