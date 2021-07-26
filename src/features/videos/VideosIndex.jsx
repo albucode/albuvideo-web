@@ -9,6 +9,7 @@ import {
   Tbody,
   HStack,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 import theme from "../../../src/theme/theme";
 import { TopBar } from "../navigation/TopBar";
@@ -17,12 +18,13 @@ import { Thumbnail } from "../shared/Thumbnail";
 import Dots from "../shared/icons/Dots";
 import { useDispatch, useSelector } from "react-redux";
 import { Video } from "../../api/requests";
-import { loadVideos } from "../videos/videoSlice";
+import { loadVideos } from "./videoSlice";
 import { PageContainer } from "../shared/PageContainer";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
+import formatStatus from "../../utils/formatStatus";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -37,10 +39,6 @@ export const VideosIndex = () => {
   useEffect(() => {
     fetchVideos();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const formatStatus = (status) => {
-    return status.charAt(0).toUpperCase() + status.slice(1);
-  };
 
   return (
     <PageContainer>
@@ -65,13 +63,17 @@ export const VideosIndex = () => {
           {videos.map((video) => (
             <Tr key={video.id}>
               <Td>
+                <Link to={`/videos/${video.id}`}>
                 <HStack>
                   <Thumbnail
                     icon={<Play />}
                     inputColor={theme.colors.magenta}
                   />
-                  <ElementName paddingLeft="18px">{video.title}</ElementName>
+
+                    <ElementName paddingLeft="18px">{video.title}</ElementName>
+
                 </HStack>
+              </Link>
               </Td>
               <TableData>{formatStatus(video.status)}</TableData>
               <TableData>{formatDate(video.created_at)}</TableData>
