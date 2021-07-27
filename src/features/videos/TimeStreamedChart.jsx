@@ -24,15 +24,13 @@ export const TimeStreamedChart = () => {
       />
       <VictoryLabel text="Time streamed" x={50} y={10} textAnchor="middle" />
       <VictoryAxis
-        // tickValues={[1, 8, 16, 24]}
-        // tickFormat={["1am", "8am", "4pm", "12am"]}
+        tickFormat={() => ''}
         style={{
           grid: { stroke: theme.colors.grey2, strokeWidth: 0.5 },
         }}
       />
       <VictoryAxis
         dependentAxis
-        tickFormat={[100000, 50000, 100000]}
         style={{
           grid: { stroke: theme.colors.grey2, strokeWidth: 0.9 },
         }}
