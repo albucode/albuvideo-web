@@ -3,7 +3,6 @@ import {
   VictoryBar,
   VictoryChart,
   VictoryAxis,
-  VictoryTheme,
   VictoryLabel,
   VictoryLegend,
 } from "victory";
@@ -38,24 +37,26 @@ export const TimeStreamedChart = () => {
   ];
 
   return (
-    <VictoryChart domainPadding={{ x: 8 }} theme={VictoryTheme.material}>
+    <VictoryChart domainPadding={{ x: 8 }}>
       <VictoryLegend
-        x={240}
+        x={330}
         y={0}
-        orientation="horizontal"
-        gutter={20}
-        style={{ title: { fontSize: 20 } }}
         data={[{ name: "hours", symbol: { fill: theme.colors.cyan } }]}
       />
-
       <VictoryLabel text="Time streamed" x={50} y={10} textAnchor="middle" />
       <VictoryAxis
         tickValues={[1, 8, 16, 24]}
         tickFormat={["1am", "8am", "4pm", "12am"]}
+        style={{
+          grid: { stroke: theme.colors.grey2, strokeWidth: 0.5 },
+        }}
       />
       <VictoryAxis
         dependentAxis
-        tickFormat={[100, 500, 1000, 1500, 2000, 2500]}
+        tickFormat={[100, 500, 1000, 1500, 2000]}
+        style={{
+          grid: { stroke:  theme.colors.grey2, strokeWidth: 0.9 },
+        }}
       />
       <VictoryBar
         data={data}
