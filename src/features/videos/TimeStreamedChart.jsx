@@ -5,6 +5,7 @@ import {
   VictoryAxis,
   VictoryLabel,
   VictoryLegend,
+  VictoryTooltip,
 } from "victory";
 import theme from "../../theme/theme";
 
@@ -55,7 +56,7 @@ export const TimeStreamedChart = () => {
         dependentAxis
         tickFormat={[100, 500, 1000, 1500, 2000]}
         style={{
-          grid: { stroke:  theme.colors.grey2, strokeWidth: 0.9 },
+          grid: { stroke: theme.colors.grey2, strokeWidth: 0.9 },
         }}
       />
       <VictoryBar
@@ -63,6 +64,10 @@ export const TimeStreamedChart = () => {
         x="hour"
         y="time_streamed"
         style={{ data: { fill: theme.colors.cyan, width: 6 } }}
+        labels={({ datum }) =>
+          `Time streamed: ${datum.time_streamed}  \n Hour:${datum.hour}`
+        }
+        labelComponent={<VictoryTooltip />}
       />
     </VictoryChart>
   );
