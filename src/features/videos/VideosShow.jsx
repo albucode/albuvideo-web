@@ -5,8 +5,8 @@ import styled from "@emotion/styled";
 import { Box, Text, Tag, Center } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
-import { Video } from "../../api/requests";
-import { loadSelectedVideo } from "./videoSlice";
+import { Video, VideoStats } from "../../api/requests";
+import { loadSelectedVideo, loadVideoStats } from "./videoSlice";
 import { PageContainer } from "../shared/PageContainer";
 import { StatsContainer } from "../shared/StatsContainer";
 import { Stats } from "../dashboard/Stats";
@@ -29,6 +29,8 @@ export const VideosShow = () => {
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
+    const video_stats_response = await VideoStats.show(videoId);
+    dispatch(loadVideoStats(video_stats_response));
   };
 
   useEffect(() => {
