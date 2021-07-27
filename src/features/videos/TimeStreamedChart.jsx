@@ -16,7 +16,7 @@ export const TimeStreamedChart = () => {
   const data = useSelector((state) => state.video.videoStats);
 
   return (
-    <VictoryChart domainPadding={{ x: 8 }}>
+    <VictoryChart>
       <VictoryLegend
         x={330}
         y={0}
@@ -24,15 +24,16 @@ export const TimeStreamedChart = () => {
       />
       <VictoryLabel text="Time streamed" x={50} y={10} textAnchor="middle" />
       <VictoryAxis
-        tickFormat={() => ''}
         style={{
           grid: { stroke: theme.colors.grey2, strokeWidth: 0.5 },
+          tickLabels: { fill: "none" },
         }}
       />
       <VictoryAxis
         dependentAxis
         style={{
           grid: { stroke: theme.colors.grey2, strokeWidth: 0.9 },
+          tickLabels: { fontSize: "10" },
         }}
       />
       <VictoryBar
