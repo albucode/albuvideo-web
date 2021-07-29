@@ -41,7 +41,7 @@ export const TimeStreamedChart = () => {
         data={data}
         y="sum"
         x="period"
-        style={{ data: { fill: theme.colors.cyan, width: 20 } }}
+        style={{ data: { fill: theme.colors.cyan, width: 15 } }}
         labels={({ datum }) =>
           `Time streamed: ${datum.sum}  \n ${datum.period}`
         }

@@ -103,7 +103,7 @@ export const DashboardStats = {
 
 export const VideoStats = {
   async show(videoId) {
-    const response = await fetch(`${baseUrl}/video_stats/${videoId}`, {
+    const response = await fetch(`${baseUrl}/videos/${videoId}/stats`, {
       method: "GET",
       credentials: "include",
       headers: headers,
