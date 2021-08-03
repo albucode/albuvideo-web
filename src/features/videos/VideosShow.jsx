@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Box, Text, Tag, Center } from "@chakra-ui/react";
+import { Box, Text, Tag, Center, Link } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video, VideoStats } from "../../api/requests";
@@ -41,7 +41,12 @@ export const VideosShow = () => {
     <PageContainer>
       <TopBar sectionName="Video" />
       <Well>
-        <VideoTitle>{selectedVideo.title}</VideoTitle>
+        <Box>
+          <VideoTitle>{selectedVideo.title}</VideoTitle>
+          <Link href={selectedVideo.playlist_link} isExternal>
+          <Text>{selectedVideo.playlist_link}</Text>
+          </Link>
+        </Box>
         <Center marginLeft="auto">
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
