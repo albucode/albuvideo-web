@@ -53,10 +53,12 @@ export const VideosShow = () => {
       <Well>
         <Box>
           <VideoTitle>{selectedVideo.title}</VideoTitle>
-          <Link href={selectedVideo.playlist_link} isExternal>
-            <Text>{selectedVideo.playlist_link}</Text>
-          </Link>
-          <Button onClick={onCopy}>{hasCopied ? "Copied" : "Copy"}</Button>
+          <Center>
+            <Link href={selectedVideo.playlist_link} isExternal>
+              <Text>{selectedVideo.playlist_link}</Text>
+            </Link>
+            <Button size="xs" onClick={onCopy}>{hasCopied ? "Copied" : "Copy link"}</Button>
+          </Center>
         </Box>
         <Center marginLeft="auto">
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
