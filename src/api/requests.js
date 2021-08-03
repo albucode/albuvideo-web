@@ -100,3 +100,14 @@ export const DashboardStats = {
     return response.json();
   },
 };
+
+export const VideoStats = {
+  async show(videoId) {
+    const response = await fetch(`${baseUrl}/videos/${videoId}/stats`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};
