@@ -54,10 +54,12 @@ export const VideosShow = () => {
         <Box>
           <VideoTitle>{selectedVideo.title}</VideoTitle>
           <Center>
-            <Link href={selectedVideo.playlist_link} isExternal>
+            <PlaylistLink href={selectedVideo.playlist_link} isExternal>
               <Text>{selectedVideo.playlist_link}</Text>
-            </Link>
-            <Button size="xs" onClick={onCopy}>{hasCopied ? "Copied" : "Copy link"}</Button>
+            </PlaylistLink>
+            <CopyButton size="xs" onClick={onCopy}>
+              {hasCopied ? "Copied" : "Copy link"}
+            </CopyButton>
           </Center>
         </Box>
         <Center marginLeft="auto">
@@ -100,7 +102,6 @@ const Well = styled(Box)`
   padding: 32px;
   margin-bottom: 30px;
   display: flex;
-  max-height: 105px;
 `;
 
 const VideoTitle = styled(Text)`
@@ -116,4 +117,19 @@ const StatusTag = styled(Tag)`
   height: 52px;
   font-weight: 600;
   font-size: 18px;
+`;
+
+const PlaylistLink = styled(Link)`
+  color: ${(props) => props.theme.colors.grey1};
+  font-weight: 400;
+  font-size: 14px;
+`;
+
+const CopyButton = styled(Button)`
+  color: ${(props) => props.theme.colors.grey1};
+  background-color: ${(props) => props.theme.colors.grey2};
+  font-weight: 400;
+  font-size: 14px;
+  padding: 4px;
+  margin-left: 11px;
 `;
