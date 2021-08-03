@@ -17,7 +17,11 @@ export const TimeStreamedChart = () => {
   const data = useSelector((state) => state.video.videoStats);
 
   return (
-    <VictoryChart height={300} width={1000} containerComponent={<VictoryContainer responsive={false}/>} >
+    <VictoryChart
+      height={300}
+      width={1000}
+      containerComponent={<VictoryContainer responsive={false} />}
+    >
       <VictoryLegend
         x={875}
         y={0}

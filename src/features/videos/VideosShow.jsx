@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Box, Text, Tag, Center, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Tag,
+  Center,
+  Link,
+  useClipboard,
+  Button,
+} from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video, VideoStats } from "../../api/requests";
@@ -23,8 +31,9 @@ import { TimeStreamedChart } from "./TimeStreamedChart";
 export const VideosShow = () => {
   const dispatch = useDispatch();
   const { videoId } = useParams();
-
   const { selectedVideo } = useSelector((state) => state.video);
+  const [value, setValue] = useState("");
+  const { hasCopied, onCopy } = useClipboard(value);
 
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
@@ -35,7 +44,8 @@ export const VideosShow = () => {
 
   useEffect(() => {
     fetchVideo();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    setValue(selectedVideo.playlist_link);
+  }, [selectedVideo.playlist_link]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>
@@ -44,8 +54,9 @@ export const VideosShow = () => {
         <Box>
           <VideoTitle>{selectedVideo.title}</VideoTitle>
           <Link href={selectedVideo.playlist_link} isExternal>
-          <Text>{selectedVideo.playlist_link}</Text>
+            <Text>{selectedVideo.playlist_link}</Text>
           </Link>
+          <Button onClick={onCopy}>{hasCopied ? "Copied" : "Copy"}</Button>
         </Box>
         <Center marginLeft="auto">
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
