@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Box, Text, Tag, Center } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Tag,
+  Center,
+  Link,
+  useClipboard,
+  Button,
+} from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video, VideoStats } from "../../api/requests";
@@ -23,8 +31,9 @@ import { TimeStreamedChart } from "./TimeStreamedChart";
 export const VideosShow = () => {
   const dispatch = useDispatch();
   const { videoId } = useParams();
-
   const { selectedVideo } = useSelector((state) => state.video);
+  const [value, setValue] = useState("");
+  const { hasCopied, onCopy } = useClipboard(value);
 
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
@@ -35,13 +44,24 @@ export const VideosShow = () => {
 
   useEffect(() => {
     fetchVideo();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    setValue(selectedVideo.playlist_url);
+  }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
       <Well>
-        <VideoTitle>{selectedVideo.title}</VideoTitle>
+        <Box>
+          <VideoTitle>{selectedVideo.title}</VideoTitle>
+          <Center>
+            <PlaylistLink href={selectedVideo.playlist_url} isExternal>
+              <Text>{selectedVideo.playlist_url}</Text>
+            </PlaylistLink>
+            <CopyButton size="xs" onClick={onCopy}>
+              {hasCopied ? "Copied" : "Copy link"}
+            </CopyButton>
+          </Center>
+        </Box>
         <Center marginLeft="auto">
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
@@ -82,7 +102,6 @@ const Well = styled(Box)`
   padding: 32px;
   margin-bottom: 30px;
   display: flex;
-  max-height: 105px;
 `;
 
 const VideoTitle = styled(Text)`
@@ -98,4 +117,19 @@ const StatusTag = styled(Tag)`
   height: 52px;
   font-weight: 600;
   font-size: 18px;
+`;
+
+const PlaylistLink = styled(Link)`
+  color: ${(props) => props.theme.colors.grey1};
+  font-weight: 400;
+  font-size: 14px;
+`;
+
+const CopyButton = styled(Button)`
+  color: ${(props) => props.theme.colors.grey1};
+  background-color: ${(props) => props.theme.colors.grey2};
+  font-weight: 400;
+  font-size: 14px;
+  padding: 4px;
+  margin-left: 11px;
 `;

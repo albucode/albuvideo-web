@@ -19,6 +19,7 @@ const theme = extendTheme({
     magenta: "#E328AF",
     cyan: "#00CFFD",
     red: "#F01010",
+    pageBackground: "#F6F9FE",
   },
 });
 
