@@ -19,7 +19,7 @@ export const TimeStreamedChart = () => {
   return (
     <VictoryChart
       height={300}
-      width={1000}
+      width={900}
       containerComponent={<VictoryContainer responsive={false} />}
     >
       <VictoryLegend
