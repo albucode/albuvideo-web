@@ -44,8 +44,8 @@ export const VideosShow = () => {
 
   useEffect(() => {
     fetchVideo();
-    setValue(selectedVideo.playlist_link);
-  }, [selectedVideo.playlist_link]); // eslint-disable-line react-hooks/exhaustive-deps
+    setValue(selectedVideo.playlist_url);
+  }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>
@@ -54,8 +54,8 @@ export const VideosShow = () => {
         <Box>
           <VideoTitle>{selectedVideo.title}</VideoTitle>
           <Center>
-            <PlaylistLink href={selectedVideo.playlist_link} isExternal>
-              <Text>{selectedVideo.playlist_link}</Text>
+            <PlaylistLink href={selectedVideo.playlist_url} isExternal>
+              <Text>{selectedVideo.playlist_url}</Text>
             </PlaylistLink>
             <CopyButton size="xs" onClick={onCopy}>
               {hasCopied ? "Copied" : "Copy link"}
