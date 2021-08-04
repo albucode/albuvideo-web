@@ -84,7 +84,7 @@ export const VideosShow = () => {
         />
         <Stats
           title={"Times watched"}
-          data={"234,506"}
+          data={selectedVideo.times_watched}
           icon={<Play />}
           inputColor={theme.colors.blue}
         />
