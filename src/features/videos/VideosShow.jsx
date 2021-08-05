@@ -10,6 +10,8 @@ import {
   Link,
   useClipboard,
   Button,
+  Select,
+  Flex,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -35,6 +37,8 @@ export const VideosShow = () => {
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
 
+  const [chartOption, setChartOption] = useState("");
+
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
@@ -46,6 +50,21 @@ export const VideosShow = () => {
     fetchVideo();
     setValue(selectedVideo.playlist_url);
   }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleChange = (e) => {
+    setChartOption(e.target.value);
+  };
+
+  const displayChart = () => {
+    switch (chartOption) {
+      case "timesStreamed":
+        return <TimeStreamedChart />;
+      case "albukao":
+        return <p>Soy yo, mamis</p>;
+      default:
+        return <TimeStreamedChart />;
+    }
+  };
 
   return (
     <PageContainer>
@@ -90,7 +109,13 @@ export const VideosShow = () => {
         />
       </StatsContainer>
       <StatsContainer>
-        <TimeStreamedChart />
+        <Flex direction="column">
+          <Select onChange={handleChange} mb={8}>
+            <option value="timesStreamed">Time Streamed</option>
+            <option value="albukao">Albukao</option>
+          </Select>
+          {displayChart()}
+        </Flex>
       </StatsContainer>
     </PageContainer>
   );
