@@ -37,36 +37,47 @@ export const VideosShow = () => {
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
 
-  const [chartOption, setChartOption] = useState("");
+  const [chartOption, setChartOption] = useState("last24h");
+
+  const getVideoStats = async (frequency, interval) => {
+    const video_stats_response = await VideoStats.show(
+      videoId,
+      frequency,
+      interval
+    );
+    dispatch(loadVideoStats(video_stats_response));
+  };
 
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
-    const video_stats_response = await VideoStats.show(
-      videoId,
-      "1 hour",
-      "24 hours"
-    );
-    dispatch(loadVideoStats(video_stats_response));
+    displayChart();
   };
 
   useEffect(() => {
     fetchVideo();
     setValue(selectedVideo.playlist_url);
-  }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedVideo.playlist_url, chartOption]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e) => {
     setChartOption(e.target.value);
+    displayChart();
   };
 
   const displayChart = () => {
     switch (chartOption) {
-      case "timesStreamed":
-        return <TimeStreamedChart />;
-      case "albukao":
-        return <p>Soy yo, mamis</p>;
-      default:
-        return <TimeStreamedChart />;
+      case "last24h":
+        getVideoStats("1hour", "24hours");
+        break;
+      case "last7Days":
+        getVideoStats("6hours", "7days");
+        break;
+      case "lastHour":
+        getVideoStats("1minute", "1hour");
+        break;
+      case "last4Hours":
+        getVideoStats("5minutes", "4hours");
+        break;
     }
   };
 
@@ -115,10 +126,12 @@ export const VideosShow = () => {
       <StatsContainer>
         <Flex direction="column">
           <Select onChange={handleChange} mb={8}>
-            <option value="timesStreamed">Time Streamed</option>
-            <option value="albukao">Albukao</option>
+            <option value="last24h">Last 24h</option>
+            <option value="last7Days">Last 7 days</option>
+            <option value="lastHour">Last hour</option>
+            <option value="last4Hours">Last 4 hours</option>
           </Select>
-          {displayChart()}
+          <TimeStreamedChart />
         </Flex>
       </StatsContainer>
     </PageContainer>
