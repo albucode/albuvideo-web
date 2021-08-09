@@ -42,7 +42,11 @@ export const VideosShow = () => {
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
-    const video_stats_response = await VideoStats.show(videoId);
+    const video_stats_response = await VideoStats.show(
+      videoId,
+      "1 hour",
+      "24 hours"
+    );
     dispatch(loadVideoStats(video_stats_response));
   };
 
