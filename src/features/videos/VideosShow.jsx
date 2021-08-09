@@ -72,10 +72,10 @@ export const VideosShow = () => {
       case "last7Days":
         getVideoStats("6hours", "7days");
         break;
-      case "lastHour":
+      case "last1h":
         getVideoStats("1minute", "1hour");
         break;
-      case "last4Hours":
+      case "last4h":
         getVideoStats("5minutes", "4hours");
         break;
     }
@@ -126,10 +126,10 @@ export const VideosShow = () => {
       <StatsContainer>
         <Flex direction="column">
           <Select onChange={handleChange} mb={8}>
+            <option value="last1h">Last hour</option>
+            <option value="last4h">Last 4h</option>
             <option value="last24h">Last 24h</option>
             <option value="last7Days">Last 7 days</option>
-            <option value="lastHour">Last hour</option>
-            <option value="last4Hours">Last 4 hours</option>
           </Select>
           <TimeStreamedChart />
         </Flex>
