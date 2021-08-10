@@ -23,7 +23,7 @@ export const TimeStreamedChart = () => {
       containerComponent={<VictoryContainer responsive={false} />}
     >
       <VictoryLegend
-        x={875}
+        x={790}
         y={0}
         data={[{ name: "seconds", symbol: { fill: theme.colors.cyan } }]}
       />
