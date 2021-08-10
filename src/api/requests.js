@@ -102,12 +102,15 @@ export const DashboardStats = {
 };
 
 export const VideoStats = {
-  async show(videoId) {
-    const response = await fetch(`${baseUrl}/videos/${videoId}/stats`, {
-      method: "GET",
-      credentials: "include",
-      headers: headers,
-    });
+  async show(videoId, frequency, interval) {
+    const response = await fetch(
+      `${baseUrl}/videos/${videoId}/stats?interval=${interval}&frequency=${frequency}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: headers,
+      }
+    );
     return response.json();
   },
 };

@@ -10,6 +10,8 @@ import {
   Link,
   useClipboard,
   Button,
+  Select,
+  Flex,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -35,17 +37,49 @@ export const VideosShow = () => {
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
 
+  const [chartOption, setChartOption] = useState("last24h");
+
+  const getVideoStats = async (frequency, interval) => {
+    const video_stats_response = await VideoStats.show(
+      videoId,
+      frequency,
+      interval
+    );
+    dispatch(loadVideoStats(video_stats_response));
+  };
+
   const fetchVideo = async () => {
     const response = await Video.show(videoId);
     dispatch(loadSelectedVideo(response));
-    const video_stats_response = await VideoStats.show(videoId);
-    dispatch(loadVideoStats(video_stats_response));
+    displayChart();
   };
 
   useEffect(() => {
     fetchVideo();
     setValue(selectedVideo.playlist_url);
-  }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedVideo.playlist_url, chartOption]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleChange = (e) => {
+    setChartOption(e.target.value);
+    displayChart();
+  };
+
+  const displayChart = () => {
+    switch (chartOption) {
+      case "last24h":
+        getVideoStats("1hour", "24hours");
+        break;
+      case "last7Days":
+        getVideoStats("6hours", "7days");
+        break;
+      case "last1h":
+        getVideoStats("1minute", "1hour");
+        break;
+      case "last4h":
+        getVideoStats("5minutes", "4hours");
+        break;
+    }
+  };
 
   return (
     <PageContainer>
@@ -90,7 +124,15 @@ export const VideosShow = () => {
         />
       </StatsContainer>
       <StatsContainer>
-        <TimeStreamedChart />
+        <Flex direction="column">
+          <Select onChange={handleChange} mb={8}>
+            <option value="last1h">Last hour</option>
+            <option value="last4h">Last 4h</option>
+            <option value="last24h">Last 24h</option>
+            <option value="last7Days">Last 7 days</option>
+          </Select>
+          <TimeStreamedChart />
+        </Flex>
       </StatsContainer>
     </PageContainer>
   );
