@@ -13,8 +13,10 @@ import {
 
 import theme from "../../theme/theme";
 
-export const TimeStreamedChart = () => {
-  const data = useSelector((state) => state.video.videoStats.stream_time_data);
+export const TimesWatchedChart = () => {
+  const data = useSelector(
+    (state) => state.video.videoStats.times_watched_data
+  );
 
   return (
     <VictoryChart
@@ -25,9 +27,9 @@ export const TimeStreamedChart = () => {
       <VictoryLegend
         x={790}
         y={0}
-        data={[{ name: "seconds", symbol: { fill: theme.colors.cyan } }]}
+        data={[{ name: "seconds", symbol: { fill: theme.colors.blue } }]}
       />
-      <VictoryLabel text="Time streamed" x={50} y={10} textAnchor="middle" />
+      <VictoryLabel text="Times watched" x={50} y={10} textAnchor="middle" />
       <VictoryAxis
         style={{
           grid: { stroke: theme.colors.grey2, strokeWidth: 0.5 },
@@ -43,11 +45,11 @@ export const TimeStreamedChart = () => {
       />
       <VictoryBar
         data={data}
-        y="sum"
+        y="count"
         x="period"
-        style={{ data: { fill: theme.colors.cyan, width: 15 } }}
+        style={{ data: { fill: theme.colors.blue, width: 15 } }}
         labels={({ datum }) =>
-          `Time streamed: ${datum.sum}  \n ${datum.period}`
+          `Times watched: ${datum.count}  \n ${datum.period}`
         }
         labelComponent={<VictoryTooltip />}
       />
