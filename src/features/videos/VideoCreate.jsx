@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FormLabel, Input, Button } from "@chakra-ui/react";
+import { FormLabel, Input, Button, Checkbox } from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
@@ -24,6 +24,7 @@ const VideoCreate = () => {
         <Input {...register("title")} />
         <Input {...register("source", { required: "Source is required" })} />
         {errors.source && <p>{errors.source.message}</p>}
+        <Checkbox  {...register("published")} defaultIsChecked>Published</Checkbox>
         <Button type="submit">Submit</Button>
       </form>
     </PageContainer>
