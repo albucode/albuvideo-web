@@ -12,19 +12,19 @@ const VideoCreate = () => {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = (data) => console.log(data);
+
   return (
     <PageContainer>
       <TopBar sectionName="New video" />
-      <form
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormLabel>Title</FormLabel>
         <Input {...register("title")} />
         <Input {...register("source", { required: "Source is required" })} />
         {errors.source && <p>{errors.source.message}</p>}
-        <Checkbox  {...register("published")} defaultIsChecked>Published</Checkbox>
+        <Checkbox {...register("published")} defaultIsChecked>
+          Published
+        </Checkbox>
         <Button type="submit">Submit</Button>
       </form>
     </PageContainer>
