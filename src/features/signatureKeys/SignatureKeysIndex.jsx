@@ -29,7 +29,7 @@ export const SignatureKeysIndex = () => {
 
   return (
     <PageContainer>
-      <TopBar sectionName="SignatureKeys" />
+      <TopBar sectionName="Signature Keys" />
       <Table
         variant="striped"
         colorScheme="table"
