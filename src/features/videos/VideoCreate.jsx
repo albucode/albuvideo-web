@@ -4,6 +4,7 @@ import { FormLabel, Input, Button, Checkbox } from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
+import { Video } from "../../api/requests";
 
 const VideoCreate = () => {
   const {
@@ -12,7 +13,16 @@ const VideoCreate = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const requestBody = {
+      video: {
+        title: data.title,
+        source: data.source,
+        published: data.published,
+      },
+    };
+    Video.create(requestBody);
+  };
 
   return (
     <PageContainer>

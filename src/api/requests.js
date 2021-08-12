@@ -50,6 +50,16 @@ export const Video = {
     return response.json();
   },
 
+  async create(requestBody) {
+    const response = await fetch(`${baseUrl}/videos`, {
+      method: "POST",
+      credentials: "include",
+      headers: headers,
+      body: JSON.stringify(requestBody),
+    });
+    return response.json();
+  },
+
   async delete(videoId) {
     const response = await fetch(`${baseUrl}/videos/${videoId}`, {
       method: "DELETE",
