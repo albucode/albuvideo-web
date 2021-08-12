@@ -29,6 +29,7 @@ import formatStatus from "../../utils/formatStatus";
 import Dots from "../shared/icons/Dots";
 import formatToHours from "../../utils/formatToHours";
 import { TimeStreamedChart } from "./TimeStreamedChart";
+import { TimesWatchedChart } from "./TimesWatchedChart";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -132,6 +133,7 @@ export const VideosShow = () => {
             <option value="last7Days">Last 7 days</option>
           </Select>
           <TimeStreamedChart />
+          <TimesWatchedChart />
         </Flex>
       </StatsContainer>
     </PageContainer>
