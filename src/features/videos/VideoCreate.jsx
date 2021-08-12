@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FormLabel, Input, Button, Checkbox, Text } from "@chakra-ui/react";
+import { FormLabel, Input, Button, Checkbox, Text, Flex } from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
@@ -46,6 +46,7 @@ const VideoCreate = () => {
     <PageContainer>
       <TopBar sectionName="New video" />
       <form onSubmit={handleSubmit(onSubmit)}>
+        <Flex direction="column" width="72%">
         <FormLabel>Title</FormLabel>
         <Input {...register("title")} />
         <FormLabel>Source</FormLabel>
@@ -56,6 +57,7 @@ const VideoCreate = () => {
         </Checkbox>
         {displayErrorMessage && <ErrorAlert message={errorMessage} />}
         <Button type="submit">Submit</Button>
+        </Flex>
       </form>
     </PageContainer>
   );
