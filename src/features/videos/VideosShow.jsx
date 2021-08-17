@@ -12,6 +12,11 @@ import {
   Button,
   Select,
   Flex,
+  Menu,
+  MenuList,
+  MenuButton,
+  MenuItem,
+  IconButton,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -82,6 +87,10 @@ export const VideosShow = () => {
     }
   };
 
+  const deleteVideo = () => {
+    console.log("I am deleting a video");
+  };
+
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
@@ -101,7 +110,16 @@ export const VideosShow = () => {
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
           </StatusTag>
-          <Dots color={theme.colors.grey1} />
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<Dots color={theme.colors.grey1} />}
+              backgroundColor="white"
+            />
+            <MenuList>
+              <MenuItem onClick={deleteVideo}>Delete video</MenuItem>
+            </MenuList>
+          </Menu>
         </Center>
       </Well>
       <StatsContainer>
