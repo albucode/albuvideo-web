@@ -55,6 +55,7 @@ const VideoCreate = () => {
   return (
     <PageContainer>
       <TopBar sectionName="New video" />
+      {displayErrorMessage && <ErrorAlert message={errorMessage} />}
       <StatsContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction="column" width="72%">
@@ -73,7 +74,6 @@ const VideoCreate = () => {
             >
               Published
             </Checkbox>
-            {displayErrorMessage && <ErrorAlert message={errorMessage} />}
             <SubmitButton type="submit">Create Video</SubmitButton>
           </Flex>
         </form>
@@ -103,6 +103,5 @@ const SubmitButton = styled(Button)`
   font-weight: 700;
   font-size: 18px;
 `;
-
 
 export default VideoCreate;
