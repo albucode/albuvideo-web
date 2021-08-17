@@ -1,10 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FormLabel, Input, Button, Checkbox, Text, Flex } from "@chakra-ui/react";
+import {
+  FormLabel,
+  Input,
+  Button,
+  Checkbox,
+  Text,
+  Flex,
+} from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
-import {  Video } from "../../api/requests";
+import { Video } from "../../api/requests";
 import { displayErrorAlert, loadErrorMessage } from "../shared/errorAlertSlice";
 import ErrorAlert from "../shared/ErrorAlert";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,16 +54,16 @@ const VideoCreate = () => {
       <TopBar sectionName="New video" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex direction="column" width="72%">
-        <FormLabel>Title</FormLabel>
-        <Input {...register("title")} />
-        <FormLabel>Source</FormLabel>
-        <Input {...register("source", { required: "Source is required" })} />
-        {errors.source && <Text color="red">{errors.source.message}</Text>}
-        <Checkbox {...register("published")} defaultIsChecked>
-          Published
-        </Checkbox>
-        {displayErrorMessage && <ErrorAlert message={errorMessage} />}
-        <Button type="submit">Submit</Button>
+          <FormLabel>Title</FormLabel>
+          <Input {...register("title")} />
+          <FormLabel>Source</FormLabel>
+          <Input {...register("source", { required: "Source is required" })} />
+          {errors.source && <Text color="red">{errors.source.message}</Text>}
+          <Checkbox {...register("published")} defaultIsChecked>
+            Published
+          </Checkbox>
+          {displayErrorMessage && <ErrorAlert message={errorMessage} />}
+          <Button type="submit">Submit</Button>
         </Flex>
       </form>
     </PageContainer>

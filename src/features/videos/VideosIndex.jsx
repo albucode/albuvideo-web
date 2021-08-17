@@ -44,7 +44,7 @@ export const VideosIndex = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Videos" />
-      <LargeButton text={"New Video"} route={"/videos/new"}/>
+      <LargeButton text={"+ New Video"} route={"/videos/new"} />
       <Table
         variant="striped"
         colorScheme="table"

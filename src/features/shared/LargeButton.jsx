@@ -1,23 +1,28 @@
-import React from "react"
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Button } from "@chakra-ui/react";
-import Add from "./icons/Add";
+
+import theme from "../../theme/theme";
 
 const LargeButton = ({ text, route }) => {
-  return(
+  return (
     <Link to={route}>
-      <StyledButton><Add/>{text}</StyledButton>
+      <StyledButton>{text}</StyledButton>
     </Link>
-  )
-}
-
+  );
+};
 
 const StyledButton = styled(Button)`
-  background-color: blue;
+  background-color: ${theme.colors.blue};
   color: white;
-  width: 100%;
-  margin-top: 24px;
+  width: 140px;
+  height: 45px;
+  font-weight: 700;
+  font-size: 18px;
+  left: 85.5%;
+  margin-top: -8px;
+  margin-bottom: 32px;
 `;
 
 export default LargeButton;
