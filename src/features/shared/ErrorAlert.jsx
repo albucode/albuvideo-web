@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { Box, Button, Text } from "@chakra-ui/react";
 import { hideErrorAlert } from "./errorAlertSlice";
+import { Thumbnail } from "./Thumbnail";
+import Close from "./icons/Close";
+import theme from "../../theme/theme";
 
 const ErrorAlert = ({ message }) => {
   const dispatch = useDispatch();
@@ -13,6 +16,7 @@ const ErrorAlert = ({ message }) => {
 
   return (
     <Well>
+      <Thumbnail icon={<Close />} inputColor={theme.colors.red} />
       <Box>
         <Text>Error</Text>
         <Text>{message}</Text>
