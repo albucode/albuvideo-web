@@ -74,7 +74,7 @@ const VideoCreate = () => {
               Published
             </Checkbox>
             {displayErrorMessage && <ErrorAlert message={errorMessage} />}
-            <Button type="submit">Submit</Button>
+            <SubmitButton type="submit">Create Video</SubmitButton>
           </Flex>
         </form>
       </StatsContainer>
@@ -94,5 +94,15 @@ const InputField = styled(Input)`
   border: 1px solid #a5a5a5;
   margin-bottom: 18px;
 `;
+
+const SubmitButton = styled(Button)`
+  background-color: ${theme.colors.blue};
+  color: white;
+  width: 151px;
+  height: 45px;
+  font-weight: 700;
+  font-size: 18px;
+`;
+
 
 export default VideoCreate;
