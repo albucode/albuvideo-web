@@ -16,6 +16,8 @@ import { displayErrorAlert, loadErrorMessage } from "../shared/errorAlertSlice";
 import ErrorAlert from "../shared/ErrorAlert";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { StatsContainer } from "../shared/StatsContainer";
+import styled from "@emotion/styled";
 
 const VideoCreate = () => {
   const dispatch = useDispatch();
@@ -52,22 +54,39 @@ const VideoCreate = () => {
   return (
     <PageContainer>
       <TopBar sectionName="New video" />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex direction="column" width="72%">
-          <FormLabel>Title</FormLabel>
-          <Input {...register("title")} />
-          <FormLabel>Source</FormLabel>
-          <Input {...register("source", { required: "Source is required" })} />
-          {errors.source && <Text color="red">{errors.source.message}</Text>}
-          <Checkbox {...register("published")} defaultIsChecked>
-            Published
-          </Checkbox>
-          {displayErrorMessage && <ErrorAlert message={errorMessage} />}
-          <Button type="submit">Submit</Button>
-        </Flex>
-      </form>
+      <StatsContainer>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Flex direction="column" width="72%">
+            <Label>Title</Label>
+            <InputField {...register("title")} />
+            <Label>Source</Label>
+            <InputField
+              {...register("source", { required: "Source is required" })}
+            />
+            {errors.source && <Text color="red">{errors.source.message}</Text>}
+            <Checkbox {...register("published")} defaultIsChecked>
+              Published
+            </Checkbox>
+            {displayErrorMessage && <ErrorAlert message={errorMessage} />}
+            <Button type="submit">Submit</Button>
+          </Flex>
+        </form>
+      </StatsContainer>
     </PageContainer>
   );
 };
+
+const Label = styled(FormLabel)`
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 18px;
+`;
+
+const InputField = styled(Input)`
+  width: 600px;
+  height: 60px;
+  border: 1px solid #a5a5a5;
+  margin-bottom: 18px;
+`;
 
 export default VideoCreate;
