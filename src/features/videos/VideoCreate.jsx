@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { StatsContainer } from "../shared/StatsContainer";
 import styled from "@emotion/styled";
+import theme from "../../theme/theme";
 
 const VideoCreate = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,12 @@ const VideoCreate = () => {
               {...register("source", { required: "Source is required" })}
             />
             {errors.source && <Text color="red">{errors.source.message}</Text>}
-            <Checkbox {...register("published")} defaultIsChecked>
+            <Checkbox
+              {...register("published")}
+              iconColor={theme.colors.black}
+              defaultIsChecked
+              mb="32px"
+            >
               Published
             </Checkbox>
             {displayErrorMessage && <ErrorAlert message={errorMessage} />}
