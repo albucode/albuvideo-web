@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 
 import theme from "../../theme/theme";
 
-const LargeButton = ({ text, route }) => {
+const LinkButton = ({ text, route }) => {
   return (
     <Link to={route}>
       <StyledButton>{text}</StyledButton>
@@ -25,4 +25,4 @@ const StyledButton = styled(Button)`
   margin-bottom: 32px;
 `;
 
-export default LargeButton;
+export default LinkButton;
