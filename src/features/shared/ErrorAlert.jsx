@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "@emotion/styled";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text, Spacer } from "@chakra-ui/react";
 import { hideErrorAlert } from "./errorAlertSlice";
 import { Thumbnail } from "./Thumbnail";
 import Close from "./icons/Close";
@@ -21,6 +21,7 @@ const ErrorAlert = ({ message }) => {
         <ErrorTitle>Error</ErrorTitle>
         <ErrorMessage>{message}</ErrorMessage>
       </ErrorContainer>
+      <Spacer />
       <CloseButton onClick={handleClose}>x</CloseButton>
     </Well>
   );
@@ -36,7 +37,6 @@ const Well = styled(Box)`
 
 const CloseButton = styled(Button)`
   background-color: ${(props) => props.theme.colors.white};
-  left: 73%;
   height: 5px;
 `;
 
