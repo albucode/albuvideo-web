@@ -36,6 +36,8 @@ const Well = styled(Box)`
 
 const CloseButton = styled(Button)`
   background-color: ${(props) => props.theme.colors.white};
+  left: 73%;
+  height: 5px;
 `;
 
 const ErrorContainer = styled(Box)`
