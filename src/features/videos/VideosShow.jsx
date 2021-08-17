@@ -17,6 +17,13 @@ import {
   MenuButton,
   MenuItem,
   IconButton,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -42,8 +49,8 @@ export const VideosShow = () => {
   const { selectedVideo } = useSelector((state) => state.video);
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
-
   const [chartOption, setChartOption] = useState("last24h");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const getVideoStats = async (frequency, interval) => {
     const video_stats_response = await VideoStats.show(
@@ -87,10 +94,6 @@ export const VideosShow = () => {
     }
   };
 
-  const deleteVideo = () => {
-    console.log("I am deleting a video");
-  };
-
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
@@ -117,7 +120,24 @@ export const VideosShow = () => {
               backgroundColor="white"
             />
             <MenuList>
-              <MenuItem onClick={deleteVideo}>Delete video</MenuItem>
+              <MenuItem onClick={onOpen} color={theme.colors.red}>
+                Delete video
+              </MenuItem>
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Text>Are you sure you want to delete this video?</Text>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button>Delete video</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </MenuList>
           </Menu>
         </Center>
