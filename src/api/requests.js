@@ -49,6 +49,15 @@ export const Video = {
     });
     return response.json();
   },
+
+  async delete(videoId) {
+    const response = await fetch(`${baseUrl}/videos/${videoId}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
 };
 
 export const AccessTokens = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 import {
   Box,
@@ -51,6 +51,7 @@ export const VideosShow = () => {
   const { hasCopied, onCopy } = useClipboard(value);
   const [chartOption, setChartOption] = useState("last24h");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
 
   const getVideoStats = async (frequency, interval) => {
     const video_stats_response = await VideoStats.show(
@@ -75,6 +76,11 @@ export const VideosShow = () => {
   const handleChange = (e) => {
     setChartOption(e.target.value);
     displayChart();
+  };
+
+  const deleteVideo = async () => {
+    await Video.delete(videoId);
+    history.push("/videos");
   };
 
   const displayChart = () => {
@@ -134,7 +140,7 @@ export const VideosShow = () => {
                     <Button colorScheme="blue" mr={3} onClick={onClose}>
                       Close
                     </Button>
-                    <Button>Delete video</Button>
+                    <Button onClick={deleteVideo}>Delete video</Button>
                   </ModalFooter>
                 </ModalContent>
               </Modal>
