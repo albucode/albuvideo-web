@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import {
   Box,
@@ -12,18 +12,6 @@ import {
   Button,
   Select,
   Flex,
-  Menu,
-  MenuList,
-  MenuButton,
-  MenuItem,
-  IconButton,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -38,10 +26,10 @@ import Play from "../shared/icons/Play";
 import { TopBar } from "../navigation/TopBar";
 import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
-import Dots from "../shared/icons/Dots";
 import formatToHours from "../../utils/formatToHours";
 import { TimeStreamedChart } from "./TimeStreamedChart";
 import { TimesWatchedChart } from "./TimesWatchedChart";
+import { Options } from "./Options";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -50,8 +38,6 @@ export const VideosShow = () => {
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
   const [chartOption, setChartOption] = useState("last24h");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const history = useHistory();
 
   const getVideoStats = async (frequency, interval) => {
     const video_stats_response = await VideoStats.show(
@@ -76,11 +62,6 @@ export const VideosShow = () => {
   const handleChange = (e) => {
     setChartOption(e.target.value);
     displayChart();
-  };
-
-  const deleteVideo = async () => {
-    await Video.delete(videoId);
-    history.push("/videos");
   };
 
   const displayChart = () => {
@@ -119,33 +100,7 @@ export const VideosShow = () => {
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
           </StatusTag>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              icon={<Dots color={theme.colors.grey1} />}
-              backgroundColor="white"
-            />
-            <MenuList>
-              <MenuItem onClick={onOpen}>Delete video</MenuItem>
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Text>Are you sure you want to delete this video?</Text>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button colorScheme="blue" mr={3} onClick={onClose}>
-                      Close
-                    </Button>
-                    <DeleteButton onClick={deleteVideo}>
-                      Delete video
-                    </DeleteButton>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </MenuList>
-          </Menu>
+          <Options />
         </Center>
       </Well>
       <StatsContainer>
@@ -220,13 +175,4 @@ const CopyButton = styled(Button)`
   font-size: 14px;
   padding: 4px;
   margin-left: 11px;
-`;
-
-const DeleteButton = styled(Button)`
-  color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.red};
-  font-weight: 700;
-  font-size: 18px;
-  width: 151px;
-  height: 45px;
 `;
