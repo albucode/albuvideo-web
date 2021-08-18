@@ -126,9 +126,7 @@ export const VideosShow = () => {
               backgroundColor="white"
             />
             <MenuList>
-              <MenuItem onClick={onOpen} color={theme.colors.red}>
-                Delete video
-              </MenuItem>
+              <MenuItem onClick={onOpen}>Delete video</MenuItem>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -140,7 +138,9 @@ export const VideosShow = () => {
                     <Button colorScheme="blue" mr={3} onClick={onClose}>
                       Close
                     </Button>
-                    <Button onClick={deleteVideo}>Delete video</Button>
+                    <DeleteButton onClick={deleteVideo}>
+                      Delete video
+                    </DeleteButton>
                   </ModalFooter>
                 </ModalContent>
               </Modal>
@@ -220,4 +220,13 @@ const CopyButton = styled(Button)`
   font-size: 14px;
   padding: 4px;
   margin-left: 11px;
+`;
+
+const DeleteButton = styled(Button)`
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.red};
+  font-weight: 700;
+  font-size: 18px;
+  width: 151px;
+  height: 45px;
 `;
