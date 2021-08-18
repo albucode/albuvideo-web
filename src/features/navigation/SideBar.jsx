@@ -1,11 +1,25 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { Box, Button, Center, Spacer } from "@chakra-ui/react";
 
 import { Menu } from "./Menu";
 import { Logo } from "../shared/Logo";
+import { Session } from "../../api/requests";
+import { logOutUser } from "../authentication/userSlice";
 
 export const SideBar = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    Session.delete().then(() => {
+      dispatch(logOutUser());
+      history.push("/login");
+    });
+  };
+
   return (
     <Container>
       <Center>
@@ -13,7 +27,7 @@ export const SideBar = () => {
       </Center>
       <Menu />
       <Spacer />
-      <LogOutButton>Log out</LogOutButton>
+      <LogOutButton onClick={logOut}>Log out</LogOutButton>
     </Container>
   );
 };
