@@ -16,6 +16,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  ModalHeader,
 } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
@@ -45,6 +46,7 @@ export const Options = () => {
           <ModalOverlay />
           <ModalContent>
             <ModalCloseButton />
+            <ModalHeader>Delete video</ModalHeader>
             <ModalBody>
               <Text>Are you sure you want to delete this video?</Text>
             </ModalBody>
