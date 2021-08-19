@@ -65,6 +65,5 @@ const DeleteButton = styled(Button)`
   background-color: ${(props) => props.theme.colors.red};
   font-weight: 700;
   font-size: 18px;
-  width: 151px;
   height: 45px;
 `;
