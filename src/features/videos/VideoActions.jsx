@@ -23,7 +23,7 @@ import theme from "../../../src/theme/theme";
 import { Video } from "../../api/requests";
 import Dots from "../shared/icons/Dots";
 
-export const Options = () => {
+export const VideoActions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
   const { videoId } = useParams();

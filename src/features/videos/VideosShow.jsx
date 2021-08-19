@@ -29,7 +29,7 @@ import formatStatus from "../../utils/formatStatus";
 import formatToHours from "../../utils/formatToHours";
 import { TimeStreamedChart } from "./TimeStreamedChart";
 import { TimesWatchedChart } from "./TimesWatchedChart";
-import { Options } from "./Options";
+import { VideoActions } from "./VideoActions";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -100,7 +100,7 @@ export const VideosShow = () => {
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
           </StatusTag>
-          <Options />
+          <VideoActions />
         </Center>
       </Well>
       <StatsContainer>
