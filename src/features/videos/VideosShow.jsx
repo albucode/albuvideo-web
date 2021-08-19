@@ -26,10 +26,10 @@ import Play from "../shared/icons/Play";
 import { TopBar } from "../navigation/TopBar";
 import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
-import Dots from "../shared/icons/Dots";
 import formatToHours from "../../utils/formatToHours";
 import { TimeStreamedChart } from "./TimeStreamedChart";
 import { TimesWatchedChart } from "./TimesWatchedChart";
+import { VideoActions } from "./VideoActions";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,6 @@ export const VideosShow = () => {
   const { selectedVideo } = useSelector((state) => state.video);
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
-
   const [chartOption, setChartOption] = useState("last24h");
 
   const getVideoStats = async (frequency, interval) => {
@@ -101,7 +100,7 @@ export const VideosShow = () => {
           <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
             {selectedVideo.status && formatStatus(selectedVideo.status)}
           </StatusTag>
-          <Dots color={theme.colors.grey1} />
+          <VideoActions />
         </Center>
       </Well>
       <StatsContainer>
