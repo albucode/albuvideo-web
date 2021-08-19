@@ -51,9 +51,6 @@ export const VideoActions = () => {
               <Text>Are you sure you want to delete this video?</Text>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
-                Close
-              </Button>
               <DeleteButton onClick={deleteVideo}>Delete video</DeleteButton>
             </ModalFooter>
           </ModalContent>
