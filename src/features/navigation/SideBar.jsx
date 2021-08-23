@@ -13,11 +13,10 @@ export const SideBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const logOut = () => {
-    Session.delete().then(() => {
-      dispatch(logOutUser());
-      history.push("/login");
-    });
+  const logOut = async () => {
+    await Session.delete();
+    dispatch(logOutUser());
+    history.push("/login");
   };
 
   return (
