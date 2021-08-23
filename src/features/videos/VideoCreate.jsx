@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   FormLabel,
@@ -11,7 +11,7 @@ import {
 
 import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
-import { Video } from "../../api/requests";
+import { Video, Countries } from "../../api/requests";
 import { displayErrorAlert, loadErrorMessage } from "../shared/errorAlertSlice";
 import ErrorAlert from "../shared/ErrorAlert";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,10 +19,18 @@ import { useHistory } from "react-router-dom";
 import { StatsContainer } from "../shared/StatsContainer";
 import styled from "@emotion/styled";
 import theme from "../../theme/theme";
+import { loadVideos } from "./videoSlice";
 
 const VideoCreate = () => {
+  const [selectedCountryIds, setSelectedCountryIds] = useState([]);
+  const [countries, setCountries] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const fetchCountries = async () => {
+    const countries = await Countries.index();
+    setCountries(countries);
+  };
 
   const { errorMessage, displayErrorMessage } = useSelector(
     (state) => state.errorAlert
@@ -51,6 +59,10 @@ const VideoCreate = () => {
       }
     });
   };
+
+  useEffect(() => {
+    fetchCountries();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PageContainer>

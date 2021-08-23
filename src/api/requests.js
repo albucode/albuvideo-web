@@ -140,3 +140,14 @@ export const VideoStats = {
     return response.json();
   },
 };
+
+export const Countries = {
+  async index() {
+    const response = await fetch(`${baseUrl}/countries`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};
