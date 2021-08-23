@@ -17,10 +17,7 @@ export const userSlice = createSlice({
       emailInitial: action.payload.user?.email[0].toUpperCase(),
     }),
     logOutUser: (state) => ({
-      ...state,
-      email: "",
-      isLoggedIn: false,
-      emailInitial: "",
+    ...INITIAL_STATE,
     }),
   },
 });
