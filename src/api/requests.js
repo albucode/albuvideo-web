@@ -15,6 +15,13 @@ export const Session = {
     });
     return response.json();
   },
+  async delete() {
+    return await fetch(`${baseUrl}/users/sign_out`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: headers,
+    });
+  },
 };
 
 export const CurrentUser = {
