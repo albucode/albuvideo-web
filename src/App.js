@@ -14,6 +14,7 @@ import { SignatureKeysIndex } from "./features/signatureKeys/SignatureKeysIndex"
 import { SideBar } from "./features/navigation/SideBar";
 import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webhookSubscriptionsIndex";
 import { VideosShow } from "./features/videos/VideosShow";
+import VideoCreate from "./features/videos/VideoCreate";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/videos">
               <VideosIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/videos/new">
+              <VideoCreate />
             </PrivateRoute>
             <PrivateRoute exact path="/videos/:videoId">
               <VideosShow />

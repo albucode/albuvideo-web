@@ -25,6 +25,7 @@ import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
 import formatStatus from "../../utils/formatStatus";
+import LinkButton from "../shared/LinkButton";
 
 export const VideosIndex = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ export const VideosIndex = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Videos" />
+      <LinkButton text={"+ New Video"} route={"/videos/new"} />
       <Table
         variant="striped"
         colorScheme="table"
