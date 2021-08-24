@@ -9,6 +9,7 @@ import {
   Checkbox,
   Text,
   Flex,
+  Select,
 } from "@chakra-ui/react";
 
 import { TopBar } from "../navigation/TopBar";
@@ -25,6 +26,7 @@ import theme from "../../theme/theme";
 const VideoCreate = () => {
   const [pickerItems, setPickerItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedPermission, setSelectedPermission] = useState("");
 
   const handleCreateItem = (item) => {
     setPickerItems((curr) => [...curr, item]);
@@ -61,7 +63,7 @@ const VideoCreate = () => {
         title: data.title,
         source: data.source,
         published: data.published,
-        country_permission_type: "allowed",
+        country_permission_type: selectedPermission,
         country_ids: selectedItems.map(({ value }) => value),
       },
     };
@@ -75,6 +77,10 @@ const VideoCreate = () => {
     });
   };
 
+  const handleChange = (event) => {
+    setSelectedPermission(event.target.value);
+  };
+
   useEffect(() => {
     fetchCountries();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -86,6 +92,13 @@ const VideoCreate = () => {
       <StatsContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction="column" width="72%">
+            <Select
+              placeholder="Select country permission"
+              onChange={handleChange}
+            >
+              <option value="allowed">Allowed</option>
+              <option value="denied">Denied</option>
+            </Select>
             <CUIAutoComplete
               label="Choose preferred work locations"
               placeholder="Type a Country"
