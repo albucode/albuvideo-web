@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { CUIAutoComplete } from "chakra-ui-autocomplete";
 import { useForm } from "react-hook-form";
+
 import {
   FormLabel,
   Input,
@@ -19,17 +21,28 @@ import { useHistory } from "react-router-dom";
 import { StatsContainer } from "../shared/StatsContainer";
 import styled from "@emotion/styled";
 import theme from "../../theme/theme";
-import { loadVideos } from "./videoSlice";
 
 const VideoCreate = () => {
-  const [selectedCountryIds, setSelectedCountryIds] = useState([]);
-  const [countries, setCountries] = useState([]);
+  const [pickerItems, setPickerItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleCreateItem = (item) => {
+    setPickerItems((curr) => [...curr, item]);
+    setSelectedItems((curr) => [...curr, item]);
+  };
+
+  const handleSelectedItemsChange = (selectedItems) => {
+    if (selectedItems) {
+      setSelectedItems(selectedItems);
+    }
+  };
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const fetchCountries = async () => {
     const countries = await Countries.index();
-    setCountries(countries);
+    setPickerItems(countries.countries);
   };
 
   const { errorMessage, displayErrorMessage } = useSelector(
@@ -48,6 +61,8 @@ const VideoCreate = () => {
         title: data.title,
         source: data.source,
         published: data.published,
+        country_permission_type: "allowed",
+        country_ids: selectedItems.map(({ value }) => value),
       },
     };
     Video.create(requestBody).then((response) => {
@@ -71,6 +86,17 @@ const VideoCreate = () => {
       <StatsContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction="column" width="72%">
+            <CUIAutoComplete
+              label="Choose preferred work locations"
+              placeholder="Type a Country"
+              onCreateItem={handleCreateItem}
+              items={pickerItems}
+              selectedItems={selectedItems}
+              onSelectedItemsChange={(changes) =>
+                handleSelectedItemsChange(changes.selectedItems)
+              }
+            />
+
             <Label>Title</Label>
             <InputField {...register("title")} />
             <Label>Source</Label>
