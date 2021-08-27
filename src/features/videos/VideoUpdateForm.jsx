@@ -6,7 +6,6 @@ import {
   Input,
   Button,
   Checkbox,
-  Text,
   Flex,
   Select,
 } from "@chakra-ui/react";
@@ -49,14 +48,12 @@ const NewVideoForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     const requestBody = {
       video: {
         title: data.title,
-        source: data.source,
         published: data.published,
         country_permission_type: selectedPermission,
         country_ids: selectedItems.map(({ value }) => value),
@@ -100,11 +97,6 @@ const NewVideoForm = () => {
         />
         <Label>Title</Label>
         <InputField {...register("title")} />
-        <Label>Source</Label>
-        <InputField
-          {...register("source", { required: "Source is required" })}
-        />
-        {errors.source && <Text color="red">{errors.source.message}</Text>}
         <Checkbox
           {...register("published")}
           iconColor={theme.colors.black}
