@@ -3,7 +3,7 @@ import { CUIAutoComplete } from "chakra-ui-autocomplete";
 import { useDispatch } from "react-redux";
 
 import { Countries } from "../../api/requests";
-import { loadCountriesIds } from "./videoSlice";
+import { deleteCountriesIds, loadCountriesIds } from "./videoSlice";
 
 const CountriesSelection = () => {
   const [pickerItems, setPickerItems] = useState([]);
@@ -29,12 +29,12 @@ const CountriesSelection = () => {
 
   useEffect(() => {
     fetchCountries();
+    dispatch(deleteCountriesIds());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <CUIAutoComplete
-      label="Choose countries"
-      placeholder="Type a Country"
+      placeholder="Type a country"
       onCreateItem={handleCreateItem}
       items={pickerItems}
       selectedItems={selectedItems}

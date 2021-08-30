@@ -27,6 +27,10 @@ export const videoSlice = createSlice({
       ...state,
       selectedCountriesIds: action.payload.map(({ value }) => value),
     }),
+    deleteCountriesIds: (state) => ({
+      ...state,
+      selectedCountriesIds: [],
+    }),
   },
 });
 
@@ -35,6 +39,7 @@ export const {
   loadSelectedVideo,
   loadVideoStats,
   loadCountriesIds,
+  deleteCountriesIds,
 } = videoSlice.actions;
 
 export default videoSlice.reducer;
