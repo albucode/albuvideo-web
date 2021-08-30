@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   videos: [],
   selectedVideo: {},
   videoStats: [],
+  selectedCountriesIds: [],
 };
 
 export const videoSlice = createSlice({
@@ -22,10 +23,18 @@ export const videoSlice = createSlice({
       ...state,
       videoStats: action.payload,
     }),
+    loadCountriesIds: (state, action) => ({
+      ...state,
+      selectedCountriesIds: action.payload.map(({ value }) => value),
+    }),
   },
 });
 
-export const { loadVideos, loadSelectedVideo, loadVideoStats } =
-  videoSlice.actions;
+export const {
+  loadVideos,
+  loadSelectedVideo,
+  loadVideoStats,
+  loadCountriesIds,
+} = videoSlice.actions;
 
 export default videoSlice.reducer;

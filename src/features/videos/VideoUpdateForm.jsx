@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { CUIAutoComplete } from "chakra-ui-autocomplete";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FormLabel,
@@ -9,46 +8,28 @@ import {
   Flex,
   Select,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import { Video, Countries } from "../../api/requests";
+import { Video } from "../../api/requests";
 import {
   displayErrorAlert,
   loadErrorMessage,
   hideErrorAlert,
 } from "../shared/errorAlertSlice";
 import theme from "../../theme/theme";
+import CountriesSelection from "./CountriesSelection";
 
 const NewVideoForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [pickerItems, setPickerItems] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
   const [selectedPermission, setSelectedPermission] = useState("");
   const { videoId } = useParams();
 
-  const handleCreateItem = (item) => {
-    setPickerItems((curr) => [...curr, item]);
-    setSelectedItems((curr) => [...curr, item]);
-  };
+  const { register, handleSubmit } = useForm();
 
-  const handleSelectedItemsChange = (selectedItems) => {
-    if (selectedItems) {
-      setSelectedItems(selectedItems);
-    }
-  };
-
-  const fetchCountries = async () => {
-    const countries = await Countries.index();
-    setPickerItems(countries.countries);
-  };
-
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { selectedCountriesIds } = useSelector((state) => state.video);
 
   const onSubmit = (data) => {
     const requestBody = {
@@ -56,7 +37,7 @@ const NewVideoForm = () => {
         title: data.title,
         published: data.published,
         country_permission_type: selectedPermission,
-        country_ids: selectedItems.map(({ value }) => value),
+        country_ids: selectedCountriesIds,
       },
     };
     Video.update(videoId, requestBody).then((response) => {
@@ -74,10 +55,6 @@ const NewVideoForm = () => {
     setSelectedPermission(event.target.value);
   };
 
-  useEffect(() => {
-    fetchCountries();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
@@ -85,16 +62,7 @@ const NewVideoForm = () => {
           <option value="allowed">Allowed</option>
           <option value="denied">Denied</option>
         </Select>
-        <CUIAutoComplete
-          label="Choose countries"
-          placeholder="Type a Country"
-          onCreateItem={handleCreateItem}
-          items={pickerItems}
-          selectedItems={selectedItems}
-          onSelectedItemsChange={(changes) =>
-            handleSelectedItemsChange(changes.selectedItems)
-          }
-        />
+        <CountriesSelection />
         <Label>Title</Label>
         <InputField {...register("title")} />
         <Checkbox
