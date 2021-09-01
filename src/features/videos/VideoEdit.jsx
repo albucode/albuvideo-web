@@ -5,22 +5,22 @@ import { TopBar } from "../navigation/TopBar";
 import { PageContainer } from "../shared/PageContainer";
 import ErrorAlert from "../shared/ErrorAlert";
 import { StatsContainer } from "../shared/StatsContainer";
-import NewVideoForm from "./NewVideoForm";
+import VideoEditForm from "./VideoEditForm";
 
-const VideoCreate = () => {
+const VideoEdit = () => {
   const { errorMessage, displayErrorMessage } = useSelector(
     (state) => state.errorAlert
   );
 
   return (
     <PageContainer>
-      <TopBar sectionName="New video" />
+      <TopBar sectionName="Update video" />
       {displayErrorMessage && <ErrorAlert message={errorMessage} />}
       <StatsContainer>
-        <NewVideoForm />
+        <VideoEditForm />
       </StatsContainer>
     </PageContainer>
   );
 };
 
-export default VideoCreate;
+export default VideoEdit;

@@ -67,6 +67,16 @@ export const Video = {
     return response.json();
   },
 
+  async update(videoId, requestBody) {
+    const response = await fetch(`${baseUrl}/videos/${videoId}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: headers,
+      body: JSON.stringify(requestBody),
+    });
+    return response.json();
+  },
+
   async delete(videoId) {
     const response = await fetch(`${baseUrl}/videos/${videoId}`, {
       method: "DELETE",
@@ -137,6 +147,17 @@ export const VideoStats = {
         headers: headers,
       }
     );
+    return response.json();
+  },
+};
+
+export const Countries = {
+  async index() {
+    const response = await fetch(`${baseUrl}/countries`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
     return response.json();
   },
 };
