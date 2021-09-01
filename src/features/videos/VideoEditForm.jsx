@@ -21,7 +21,7 @@ import {
 import theme from "../../theme/theme";
 import CountriesSelection from "./CountriesSelection";
 
-const NewVideoForm = () => {
+const VideoEditForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [selectedPermission, setSelectedPermission] = useState("");
@@ -101,4 +101,4 @@ const SubmitButton = styled(Button)`
   font-size: 18px;
 `;
 
-export default NewVideoForm;
+export default VideoEditForm;

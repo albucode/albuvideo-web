@@ -42,7 +42,7 @@ export const VideoActions = () => {
       />
       <MenuList>
         <MenuItem onClick={onOpen}>Delete video</MenuItem>
-        <Link to={`/videos/${videoId}/update`}>
+        <Link to={`/videos/${videoId}/edit`}>
           {" "}
           <MenuItem>Edit</MenuItem>
         </Link>

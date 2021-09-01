@@ -15,7 +15,7 @@ import { SideBar } from "./features/navigation/SideBar";
 import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webhookSubscriptionsIndex";
 import { VideosShow } from "./features/videos/VideosShow";
 import VideoCreate from "./features/videos/VideoCreate";
-import VideoUpdate from "./features/videos/VideoUpdate";
+import VideoEdit from "./features/videos/VideoEdit";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,8 +54,8 @@ const App = () => {
             <PrivateRoute exact path="/videos/:videoId">
               <VideosShow />
             </PrivateRoute>
-            <PrivateRoute exact path="/videos/:videoId/update">
-              <VideoUpdate />
+            <PrivateRoute exact path="/videos/:videoId/edit">
+              <VideoEdit />
             </PrivateRoute>
             <PrivateRoute exact path="/access-tokens">
               <AccessTokensIndex />
