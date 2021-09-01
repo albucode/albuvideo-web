@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import {
   Text,
@@ -42,6 +42,10 @@ export const VideoActions = () => {
       />
       <MenuList>
         <MenuItem onClick={onOpen}>Delete video</MenuItem>
+        <Link to={`/videos/${videoId}/update`}>
+          {" "}
+          <MenuItem>Edit</MenuItem>
+        </Link>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>

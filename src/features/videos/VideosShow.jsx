@@ -30,7 +30,6 @@ import formatToHours from "../../utils/formatToHours";
 import { TimeStreamedChart } from "./TimeStreamedChart";
 import { TimesWatchedChart } from "./TimesWatchedChart";
 import { VideoActions } from "./VideoActions";
-import LinkButton from "../shared/LinkButton";
 
 export const VideosShow = () => {
   const dispatch = useDispatch();
@@ -85,7 +84,6 @@ export const VideosShow = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
-      <LinkButton text={"Update"} route={`/videos/${videoId}/update`} />
       <Well>
         <Box>
           <VideoTitle>{selectedVideo.title}</VideoTitle>
