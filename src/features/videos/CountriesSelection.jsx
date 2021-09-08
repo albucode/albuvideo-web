@@ -35,6 +35,7 @@ const CountriesSelection = () => {
   return (
     <CUIAutoComplete
       placeholder="Type a country"
+      disableCreateItem={true}
       onCreateItem={handleCreateItem}
       items={pickerItems}
       selectedItems={selectedItems}
