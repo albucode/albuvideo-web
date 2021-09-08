@@ -30,6 +30,7 @@ const VideoEditForm = () => {
   const { register, handleSubmit } = useForm();
 
   const { selectedCountriesIds } = useSelector((state) => state.video);
+  const { selectedVideo } = useSelector((state) => state.video);
 
   const onSubmit = (data) => {
     const requestBody = {
@@ -58,13 +59,17 @@ const VideoEditForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
-        <Select placeholder="Select country permission" onChange={handleChange}>
+        <Select
+          placeholder="Select country permission"
+          onChange={handleChange}
+          defaultValue={selectedVideo.country_permission_type}
+        >
           <option value="allowed">Allowed</option>
           <option value="denied">Denied</option>
         </Select>
         <CountriesSelection />
         <Label>Title</Label>
-        <InputField {...register("title")} />
+        <InputField {...register("title")} defaultValue={selectedVideo.title} />
         <Checkbox
           {...register("published")}
           iconColor={theme.colors.black}
