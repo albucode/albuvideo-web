@@ -22,15 +22,17 @@ import theme from "../../theme/theme";
 import CountriesSelection from "./CountriesSelection";
 
 const VideoEditForm = () => {
+  const { selectedVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [selectedPermission, setSelectedPermission] = useState("");
+  const [selectedPermission, setSelectedPermission] = useState(
+    selectedVideo.country_permission_type || ""
+  );
   const { videoId } = useParams();
 
   const { register, handleSubmit } = useForm();
 
   const { selectedCountriesIds } = useSelector((state) => state.video);
-  const { selectedVideo } = useSelector((state) => state.video);
 
   const onSubmit = (data) => {
     const requestBody = {
@@ -73,7 +75,7 @@ const VideoEditForm = () => {
         <Checkbox
           {...register("published")}
           iconColor={theme.colors.black}
-          defaultIsChecked
+          defaultIsChecked={selectedVideo.published}
           mb="32px"
         >
           Published
