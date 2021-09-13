@@ -134,6 +134,18 @@ export const WebhookSubscriptions = {
     });
     return response.json();
   },
+
+  async delete(webhookSubscriptionId) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: headers,
+      }
+    );
+    return response.json();
+  },
 };
 
 export const DashboardStats = {

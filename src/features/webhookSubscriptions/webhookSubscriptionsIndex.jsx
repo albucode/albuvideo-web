@@ -6,13 +6,12 @@ import { TopBar } from "../navigation/TopBar";
 import { WebhookSubscriptions } from "../../api/requests";
 import { loadWebhookSubscriptions } from "./webhookSubscriptionsSlice";
 import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
-import theme from "../../theme/theme";
-import Dots from "../shared/icons/Dots";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
 import LinkButton from "../shared/LinkButton";
+import { WebhookSubscriptionActions } from "./WebhookSubscriptionActions";
 
 export const WebhookSubscriptionsIndex = () => {
   const dispatch = useDispatch();
@@ -59,7 +58,9 @@ export const WebhookSubscriptionsIndex = () => {
                 <TableData>{webhook.url}</TableData>
                 <TableData pr={0}>{formatDate(webhook.created_at)}</TableData>
                 <TableData pl={0}>
-                  <Dots color={theme.colors.grey1} />
+                  <WebhookSubscriptionActions
+                    webhookSubscriptionId={webhook.id}
+                  />
                 </TableData>
               </Tr>
             ))}
