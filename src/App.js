@@ -16,6 +16,7 @@ import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webho
 import { VideosShow } from "./features/videos/VideosShow";
 import VideoCreate from "./features/videos/VideoCreate";
 import VideoEdit from "./features/videos/VideoEdit";
+import WebhookSubscriptionCreate from "./features/webhookSubscriptions/WebhookSubscriptionCreate";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/webhook-subscriptions">
               <WebhookSubscriptionsIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/webhook-subscriptions/new">
+              <WebhookSubscriptionCreate />
             </PrivateRoute>
           </Switch>
         </Flex>

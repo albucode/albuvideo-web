@@ -12,6 +12,7 @@ import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
 import formatDate from "../../utils/formatDate";
+import LinkButton from "../shared/LinkButton";
 
 export const WebhookSubscriptionsIndex = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const WebhookSubscriptionsIndex = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Webhooks" />
+      <LinkButton text={"+ Webhook"} route={"/webhook-subscriptions/new"} />
       <Table
         variant="striped"
         colorScheme="table"

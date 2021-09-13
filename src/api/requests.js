@@ -124,6 +124,16 @@ export const WebhookSubscriptions = {
     });
     return response.json();
   },
+
+  async create(requestBody) {
+    const response = await fetch(`${baseUrl}/webhook_subscriptions`, {
+      method: "POST",
+      credentials: "include",
+      headers: headers,
+      body: JSON.stringify(requestBody),
+    });
+    return response.json();
+  },
 };
 
 export const DashboardStats = {
