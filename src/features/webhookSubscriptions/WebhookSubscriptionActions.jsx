@@ -36,11 +36,11 @@ export const WebhookSubscriptionActions = ({ webhookSubscriptionId }) => {
       <MenuButton
         as={IconButton}
         icon={<Dots color={theme.colors.grey1} />}
-         backgroundColor="rgba(0,0,0,0)"
+        backgroundColor="rgba(0,0,0,0)"
       />
       <MenuList>
         <MenuItem onClick={onOpen}>Delete</MenuItem>
-        <Link to={`/videos/${webhookSubscriptionId}/edit`}>
+        <Link to={`/webhook-subscriptions/${webhookSubscriptionId}/edit`}>
           {" "}
           <MenuItem>Edit</MenuItem>
         </Link>

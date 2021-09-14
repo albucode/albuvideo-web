@@ -146,6 +146,29 @@ export const WebhookSubscriptions = {
     );
     return response.json();
   },
+  async show(webhookSubscriptionId) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: headers,
+      }
+    );
+    return response.json();
+  },
+  async update(webhookSubscriptionId, requestBody) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        headers: headers,
+        body: JSON.stringify(requestBody),
+      }
+    );
+    return response.json();
+  },
 };
 
 export const DashboardStats = {
