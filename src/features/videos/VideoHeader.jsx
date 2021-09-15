@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import {
   Box,
   Text,
   Tag,
   Center,
-  Link,
+  Link as LinkChakra,
   useClipboard,
   Button,
 } from "@chakra-ui/react";
@@ -19,31 +20,35 @@ export const VideoHeader = () => {
   const { selectedVideo } = useSelector((state) => state.video);
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
+  const { videoId } = useParams();
 
   useEffect(() => {
     setValue(selectedVideo.playlist_url);
   }, [selectedVideo.playlist_url]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-      <Well>
-        <Box>
-          <VideoTitle>{selectedVideo.title}</VideoTitle>
-          <Center>
-            <PlaylistLink href={selectedVideo.playlist_url} isExternal>
-              <Text>{selectedVideo.playlist_url}</Text>
-            </PlaylistLink>
-            <CopyButton size="xs" onClick={onCopy}>
-              {hasCopied ? "Copied" : "Copy link"}
-            </CopyButton>
-          </Center>
-        </Box>
-        <Center marginLeft="auto">
-          <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
-            {selectedVideo.status && formatStatus(selectedVideo.status)}
-          </StatusTag>
-          <VideoActions />
+    <Well>
+      <Box>
+        <VideoTitle>{selectedVideo.title}</VideoTitle>
+        <Center>
+          <PlaylistLink href={selectedVideo.playlist_url} isExternal>
+            <Text>{selectedVideo.playlist_url}</Text>
+          </PlaylistLink>
+          <SmallButton size="xs" onClick={onCopy}>
+            {hasCopied ? "Copied" : "Copy link"}
+          </SmallButton>
+          <Link to={`/videos/${videoId}/preview`}>
+            <SmallButton size="xs">Preview</SmallButton>
+          </Link>
         </Center>
-      </Well>
+      </Box>
+      <Center marginLeft="auto">
+        <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
+          {selectedVideo.status && formatStatus(selectedVideo.status)}
+        </StatusTag>
+        <VideoActions />
+      </Center>
+    </Well>
   );
 };
 
@@ -70,13 +75,13 @@ const StatusTag = styled(Tag)`
   font-size: 18px;
 `;
 
-const PlaylistLink = styled(Link)`
+const PlaylistLink = styled(LinkChakra)`
   color: ${(props) => props.theme.colors.grey1};
   font-weight: 400;
   font-size: 14px;
 `;
 
-const CopyButton = styled(Button)`
+const SmallButton = styled(Button)`
   color: ${(props) => props.theme.colors.grey1};
   background-color: ${(props) => props.theme.colors.grey2};
   font-weight: 400;

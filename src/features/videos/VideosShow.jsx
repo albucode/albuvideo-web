@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  Select,
-  Flex,
-} from "@chakra-ui/react";
+import { Select, Flex } from "@chakra-ui/react";
 
 import theme from "../../../src/theme/theme";
 import { Video, VideoStats } from "../../api/requests";
@@ -71,7 +68,7 @@ export const VideosShow = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
-      <VideoHeader/>
+      <VideoHeader />
       <StatsContainer>
         <Stats
           title={"Total streamed"}
