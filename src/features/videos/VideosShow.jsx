@@ -68,7 +68,11 @@ export const VideosShow = () => {
   return (
     <PageContainer>
       <TopBar sectionName="Video" />
-      <VideoHeader />
+      <VideoHeader
+        title={selectedVideo.title}
+        playlistUrl={selectedVideo.playlist_url}
+        status={selectedVideo.status}
+      />
       <StatsContainer>
         <Stats
           title={"Total streamed"}
