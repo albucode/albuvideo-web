@@ -16,7 +16,7 @@ import statusToColor from "../../utils/statusToColor";
 import formatStatus from "../../utils/formatStatus";
 import { VideoActions } from "./VideoActions";
 
-export const VideoHeader = () => {
+export const VideoHeader = ({ title, playlistUrl, status }) => {
   const { selectedVideo } = useSelector((state) => state.video);
   const [value, setValue] = useState("");
   const { hasCopied, onCopy } = useClipboard(value);
@@ -29,10 +29,10 @@ export const VideoHeader = () => {
   return (
     <Well>
       <Box>
-        <VideoTitle>{selectedVideo.title}</VideoTitle>
+        <VideoTitle>{title}</VideoTitle>
         <Center>
-          <PlaylistLink href={selectedVideo.playlist_url} isExternal>
-            <Text>{selectedVideo.playlist_url}</Text>
+          <PlaylistLink href={playlistUrl} isExternal>
+            <Text>{playlistUrl}</Text>
           </PlaylistLink>
           <SmallButton size="xs" onClick={onCopy}>
             {hasCopied ? "Copied" : "Copy link"}
@@ -43,8 +43,8 @@ export const VideoHeader = () => {
         </Center>
       </Box>
       <Center marginLeft="auto">
-        <StatusTag backgroundColor={statusToColor(selectedVideo.status)}>
-          {selectedVideo.status && formatStatus(selectedVideo.status)}
+        <StatusTag backgroundColor={statusToColor(status)}>
+          {status && formatStatus(status)}
         </StatusTag>
         <VideoActions />
       </Center>
