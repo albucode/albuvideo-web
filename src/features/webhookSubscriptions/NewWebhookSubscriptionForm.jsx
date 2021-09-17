@@ -47,7 +47,10 @@ const NewWebhookSubscriptionForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
         <Label>Topic</Label>
-        <InputField {...register("topic", { required: "Topic is required" })} />
+        <select {...register("topic", { required: "Topic is required" })}>
+          <option value="video/ready">video/ready</option>
+          <option value="video/failed">video/failed</option>
+        </select>
         {errors.topic && <Text color="red">{errors.topic.message}</Text>}
         <Label>Url</Label>
         <InputField {...register("url", { required: "Url is required" })} />
