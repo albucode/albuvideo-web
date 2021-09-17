@@ -53,7 +53,11 @@ const NewWebhookSubscriptionForm = () => {
           {...register("topic", { required: "Topic is required" })}
         >
           {topics &&
-            topics.map((topic, index) => <option key={`topic${index}`} value={topic}>{topic}</option>)}
+            topics.map((topic, index) => (
+              <option key={`topic${index}`} value={topic}>
+                {topic}
+              </option>
+            ))}
         </Select>
         {errors.topic && <Text color="red">{errors.topic.message}</Text>}
         <Label>Url</Label>
