@@ -206,3 +206,14 @@ export const Countries = {
     return response.json();
   },
 };
+
+export const Options = {
+  async index() {
+    const response = await fetch(`${baseUrl}/options`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};

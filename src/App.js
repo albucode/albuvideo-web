@@ -5,8 +5,9 @@ import { Flex } from "@chakra-ui/react";
 
 import PrivateRoute from "./PrivateRoute";
 import { LogInPage } from "./features/authentication/LogInPage";
-import { CurrentUser } from "./api/requests";
+import { CurrentUser, Options } from "./api/requests";
 import { loadUser } from "./features/authentication/userSlice";
+import { loadOptions } from "./features/options/optionsSlice";
 import { Dashboard } from "./features/dashboard/Dashboard";
 import { VideosIndex } from "./features/videos/VideosIndex";
 import { AccessTokensIndex } from "./features/accessTokens/AccessTokensIndex";
@@ -30,8 +31,15 @@ const App = () => {
     dispatch(loadUser(response));
   };
 
+  const fetchOptions = async () => {
+    const response = await Options.index();
+
+    dispatch(loadOptions(response));
+  };
+
   useEffect(() => {
     fetchCurrentUser();
+    fetchOptions();
   });
 
   return userEmail ? (
