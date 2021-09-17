@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Button, Text, Flex } from "@chakra-ui/react";
+import { Button, Text, Flex, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -48,11 +48,13 @@ const NewWebhookSubscriptionForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
-        <Label>Topic</Label>
-        <select {...register("topic", { required: "Topic is required" })}>
+        <Select
+          placeholder="Select a topic"
+          {...register("topic", { required: "Topic is required" })}
+        >
           {topics &&
-            topics.map((topic) => <option value={topic}>{topic}</option>)}
-        </select>
+            topics.map((topic, index) => <option key={`topic${index}`} value={topic}>{topic}</option>)}
+        </Select>
         {errors.topic && <Text color="red">{errors.topic.message}</Text>}
         <Label>Url</Label>
         <InputField {...register("url", { required: "Url is required" })} />
