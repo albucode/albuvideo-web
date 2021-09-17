@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Flex, Select, Text } from "@chakra-ui/react";
+import { Button, Flex, Text, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -14,6 +14,7 @@ import {
 import theme from "../../theme/theme";
 import InputField from "../shared/InputField";
 import Label from "../shared/Label";
+
 const WebhookSubscriptionEditForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -64,6 +65,10 @@ const WebhookSubscriptionEditForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
         <Select
+          width={"600px"}
+          height={"60px"}
+          borderColor={theme.colors.grey8}
+          marginBottom={"18px"}
           placeholder="Select a topic"
           {...register("topic", { required: "Topic is required" })}
         >

@@ -49,6 +49,10 @@ const NewWebhookSubscriptionForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex direction="column" width="72%">
         <Select
+          width={"600px"}
+          height={"60px"}
+          borderColor={theme.colors.grey8}
+          marginBottom={"18px"}
           placeholder="Select a topic"
           {...register("topic", { required: "Topic is required" })}
         >
