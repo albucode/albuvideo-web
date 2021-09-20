@@ -17,6 +17,7 @@ import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webho
 import { VideosShow } from "./features/videos/VideosShow";
 import VideoCreate from "./features/videos/VideoCreate";
 import VideoEdit from "./features/videos/VideoEdit";
+import { VideoPreview } from "./features/videos/VideoPreview";
 import WebhookSubscriptionCreate from "./features/webhookSubscriptions/WebhookSubscriptionCreate";
 import WebhookSubscriptionEdit from "./features/webhookSubscriptions/WebhookSubscriptionEdit";
 
@@ -63,6 +64,9 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/videos/:videoId">
               <VideosShow />
+            </PrivateRoute>
+            <PrivateRoute exact path="/videos/:videoId/preview">
+              <VideoPreview />
             </PrivateRoute>
             <PrivateRoute exact path="/videos/:videoId/edit">
               <VideoEdit />
