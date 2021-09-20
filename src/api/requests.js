@@ -124,6 +124,51 @@ export const WebhookSubscriptions = {
     });
     return response.json();
   },
+
+  async create(requestBody) {
+    const response = await fetch(`${baseUrl}/webhook_subscriptions`, {
+      method: "POST",
+      credentials: "include",
+      headers: headers,
+      body: JSON.stringify(requestBody),
+    });
+    return response.json();
+  },
+
+  async delete(webhookSubscriptionId) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: headers,
+      }
+    );
+    return response.json();
+  },
+  async show(webhookSubscriptionId) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: headers,
+      }
+    );
+    return response.json();
+  },
+  async update(webhookSubscriptionId, requestBody) {
+    const response = await fetch(
+      `${baseUrl}/webhook_subscriptions/${webhookSubscriptionId}`,
+      {
+        method: "PUT",
+        credentials: "include",
+        headers: headers,
+        body: JSON.stringify(requestBody),
+      }
+    );
+    return response.json();
+  },
 };
 
 export const DashboardStats = {
@@ -154,6 +199,17 @@ export const VideoStats = {
 export const Countries = {
   async index() {
     const response = await fetch(`${baseUrl}/countries`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};
+
+export const Options = {
+  async index() {
+    const response = await fetch(`${baseUrl}/options`, {
       method: "GET",
       credentials: "include",
       headers: headers,

@@ -5,8 +5,9 @@ import { Flex } from "@chakra-ui/react";
 
 import PrivateRoute from "./PrivateRoute";
 import { LogInPage } from "./features/authentication/LogInPage";
-import { CurrentUser } from "./api/requests";
+import { CurrentUser, Options } from "./api/requests";
 import { loadUser } from "./features/authentication/userSlice";
+import { loadOptions } from "./features/options/optionsSlice";
 import { Dashboard } from "./features/dashboard/Dashboard";
 import { VideosIndex } from "./features/videos/VideosIndex";
 import { AccessTokensIndex } from "./features/accessTokens/AccessTokensIndex";
@@ -16,6 +17,8 @@ import { WebhookSubscriptionsIndex } from "./features/webhookSubscriptions/webho
 import { VideosShow } from "./features/videos/VideosShow";
 import VideoCreate from "./features/videos/VideoCreate";
 import VideoEdit from "./features/videos/VideoEdit";
+import WebhookSubscriptionCreate from "./features/webhookSubscriptions/WebhookSubscriptionCreate";
+import WebhookSubscriptionEdit from "./features/webhookSubscriptions/WebhookSubscriptionEdit";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,8 +31,15 @@ const App = () => {
     dispatch(loadUser(response));
   };
 
+  const fetchOptions = async () => {
+    const response = await Options.index();
+
+    dispatch(loadOptions(response));
+  };
+
   useEffect(() => {
     fetchCurrentUser();
+    fetchOptions();
   });
 
   return userEmail ? (
@@ -65,6 +75,15 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute exact path="/webhook-subscriptions">
               <WebhookSubscriptionsIndex />
+            </PrivateRoute>
+            <PrivateRoute exact path="/webhook-subscriptions/new">
+              <WebhookSubscriptionCreate />
+            </PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/webhook-subscriptions/:webhookSubscriptionId/edit"
+            >
+              <WebhookSubscriptionEdit />
             </PrivateRoute>
           </Switch>
         </Flex>

@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  FormLabel,
-  Input,
-  Button,
-  Checkbox,
-  Flex,
-  Select,
-} from "@chakra-ui/react";
+import { Button, Checkbox, Flex, Select } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
@@ -20,6 +13,8 @@ import {
 } from "../shared/errorAlertSlice";
 import theme from "../../theme/theme";
 import CountriesSelection from "./CountriesSelection";
+import InputField from "../shared/InputField";
+import Label from "../shared/Label";
 
 const VideoEditForm = () => {
   const { selectedVideo } = useSelector((state) => state.video);
@@ -85,19 +80,6 @@ const VideoEditForm = () => {
     </form>
   );
 };
-
-const Label = styled(FormLabel)`
-  font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 18px;
-`;
-
-const InputField = styled(Input)`
-  width: 600px;
-  height: 60px;
-  border: 1px solid #a5a5a5;
-  margin-bottom: 18px;
-`;
 
 const SubmitButton = styled(Button)`
   background-color: ${theme.colors.blue};

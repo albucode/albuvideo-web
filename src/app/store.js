@@ -7,6 +7,7 @@ import accessTokenSlice from "../features/accessTokens/accessTokenSlice";
 import signatureKeySlice from "../features/signatureKeys/signatureKeysSlice";
 import webhookSubscriptionsSlice from "../features/webhookSubscriptions/webhookSubscriptionsSlice";
 import dashboardSlice from "../features/dashboard/dashboardSlice";
+import optionsSlice from "../features/options/optionsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     signatureKey: signatureKeySlice,
     webhookSubscription: webhookSubscriptionsSlice,
     dashboard: dashboardSlice,
+    options: optionsSlice,
   },
 });
