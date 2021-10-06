@@ -20,6 +20,7 @@ import VideoEdit from "./features/videos/VideoEdit";
 import { VideoPreview } from "./features/videos/VideoPreview";
 import WebhookSubscriptionCreate from "./features/webhookSubscriptions/WebhookSubscriptionCreate";
 import WebhookSubscriptionEdit from "./features/webhookSubscriptions/WebhookSubscriptionEdit";
+import { InvoicesIndex } from "./features/invoices/InvoicesIndex";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -88,6 +89,9 @@ const App = () => {
               path="/webhook-subscriptions/:webhookSubscriptionId/edit"
             >
               <WebhookSubscriptionEdit />
+            </PrivateRoute>
+            <PrivateRoute exact path="/invoices">
+              <InvoicesIndex />
             </PrivateRoute>
           </Switch>
         </Flex>

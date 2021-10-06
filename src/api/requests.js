@@ -217,3 +217,14 @@ export const Options = {
     return response.json();
   },
 };
+
+export const Invoices = {
+  async index() {
+    const response = await fetch(`${baseUrl}/invoices`, {
+      method: "GET",
+      credentials: "include",
+      headers: headers,
+    });
+    return response.json();
+  },
+};
