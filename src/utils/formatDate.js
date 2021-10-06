@@ -1,4 +1,4 @@
-const formatDate = (dateString) => {
+export const formatDate = (dateString) => {
   const date = new Date(dateString);
   return (
     date.getMonth() +
@@ -14,4 +14,7 @@ const formatDate = (dateString) => {
   );
 };
 
-export default formatDate;
+export const formatMonthYear = (dateString) => {
+  const date = new Date(dateString);
+  return date.getMonth() + 1 + "/" + date.getFullYear();
+};

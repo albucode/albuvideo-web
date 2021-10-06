@@ -23,7 +23,7 @@ import { PageContainer } from "../shared/PageContainer";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
-import formatDate from "../../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 import formatStatus from "../../utils/formatStatus";
 import LinkButton from "../shared/LinkButton";
 
