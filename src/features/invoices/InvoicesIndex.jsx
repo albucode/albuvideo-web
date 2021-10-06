@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Table, Tfoot, Thead, Tr, Th, Tbody } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Table, Tfoot, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
 import { TopBar } from "../navigation/TopBar";
 import { useDispatch, useSelector } from "react-redux";
 import { Invoices } from "../../api/requests";
@@ -44,7 +45,11 @@ export const InvoicesIndex = () => {
         <Tbody>
           {invoices.map((invoice) => (
             <Tr key={invoice.id}>
-              <TableData>{formatMonthYear(invoice.end_date)}</TableData>
+              <TableData>
+                <Link to={`/invoices/${invoice.id}`}>
+                  {formatMonthYear(invoice.end_date)}
+                </Link>
+              </TableData>
               <TableData>{formatStatus(invoice.status)}</TableData>
               <TableData>{invoice.invoice_total}</TableData>
             </Tr>
