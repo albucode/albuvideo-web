@@ -8,6 +8,7 @@ import Video from "../shared/icons/Video";
 import Ticket from "../shared/icons/Ticket";
 import DoubleCheck from "../shared/icons/DoubleCheck";
 import Web from "../shared/icons/Web";
+import DollarSign from "../shared/icons/DollarSign";
 
 export const Menu = () => {
   return (
@@ -31,6 +32,10 @@ export const Menu = () => {
       <Link to="/webhook-subscriptions">
         <Web marginRight={"24px"} />
         Webhooks
+      </Link>
+      <Link to="/invoices">
+        <DollarSign marginRight={"24px"} />
+        Invoices
       </Link>
     </MenuContainer>
   );
