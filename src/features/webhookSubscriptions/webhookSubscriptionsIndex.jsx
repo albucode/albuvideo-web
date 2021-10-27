@@ -9,7 +9,7 @@ import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
 import TableHeader from "../shared/TableHeader";
 import TableData from "../shared/TableData";
 import ElementName from "../shared/ElementName";
-import formatDate from "../../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 import LinkButton from "../shared/LinkButton";
 import { WebhookSubscriptionActions } from "./WebhookSubscriptionActions";
 
