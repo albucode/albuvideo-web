@@ -10,7 +10,7 @@ export const Stats = ({ title, data, icon, inputColor }) => {
     <Flex>
       <Box>
         <Title data-testid="title">{title}</Title>
-        <Data>{data}</Data>
+        <Data data-testid="data">{data}</Data>
       </Box>
       <IconTag icon={icon} inputColor={inputColor} />
     </Flex>
