@@ -6,13 +6,14 @@ import { Flex, Text, IconButton, Tag, TagLabel } from "@chakra-ui/react";
 import { SearchBar } from "../shared/SearchBar";
 import Bell from "../shared/icons/Bell";
 import Gear from "../shared/icons/Gear";
+import theme from "../../theme/theme";
 
 export const TopBar = ({ sectionName }) => {
   const { emailInitial } = useSelector((state) => state.user);
 
   return (
     <Flex marginBottom="40px">
-      <SectionName>{sectionName}</SectionName>
+      <SectionName data-testid="section-name">{sectionName}</SectionName>
       <SearchBar />
       <ButtonIcon icon={<Bell />} />
       <ButtonIcon icon={<Gear />} />
@@ -24,7 +25,7 @@ export const TopBar = ({ sectionName }) => {
 };
 
 const SectionName = styled(Text)`
-  color: ${(props) => props.theme.colors.black};
+  color: ${theme.colors.black};
   width: 345px;
   font-weight: 700;
   font-size: 36px;
@@ -32,7 +33,7 @@ const SectionName = styled(Text)`
 `;
 
 const ButtonIcon = styled(IconButton)`
-  color: ${(props) => props.theme.colors.grey1};
+  color: ${theme.colors.grey1};
   height: 60px;
   width: 60px;
   background-color: white;
@@ -41,7 +42,7 @@ const ButtonIcon = styled(IconButton)`
 `;
 
 const Initial = styled(Tag)`
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${theme.colors.blue};
   height: 60px;
   width: 60px;
   color: white;
