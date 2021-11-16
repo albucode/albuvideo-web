@@ -23,4 +23,10 @@ describe("TopBar", () => {
   it("displays section name", async () => {
     expect(screen.getByTestId("section-name")).toHaveTextContent("Test");
   });
+
+  it("displays section name styles", async () => {
+    expect(screen.getByTestId("section-name")).toHaveStyle(
+      "color: #222222; width: 345px; font-weight: 700; font-size: 36px; line-height: 49px;"
+    );
+  });
 });
