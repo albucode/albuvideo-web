@@ -1,14 +1,23 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { TopBar } from "./TopBar";
-import * as redux from "react-redux";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../authentication/userSlice";
 
 describe("TopBar", () => {
   beforeEach(() => {
-    render(<TopBar sectionName={"Test"} />);
+    const store = configureStore({
+      reducer: {
+        user: userReducer,
+      },
+    });
 
-    const spy = jest.spyOn(redux, "useSelector");
-    spy.mockReturnValue({ emailInitial: "T" });
+    render(
+      <Provider store={store}>
+        <TopBar sectionName={"Test"} />
+      </Provider>
+    );
   });
 
   it("displays section name", async () => {
