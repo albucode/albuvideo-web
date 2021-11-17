@@ -18,7 +18,7 @@ export const TopBar = ({ sectionName }) => {
       <ButtonIcon icon={<Bell />} />
       <ButtonIcon icon={<Gear />} />
       <Initial marginLeft="10px">
-        <InitialLabel>{emailInitial}</InitialLabel>
+        <InitialLabel data-testid="email-initial">{emailInitial}</InitialLabel>
       </Initial>
     </Flex>
   );
