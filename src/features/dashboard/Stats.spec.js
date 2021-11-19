@@ -17,16 +17,10 @@ describe("Stats", () => {
   });
 
   it("displays Title", async () => {
-    expect(screen.getByTestId("title")).toHaveStyle(
-      "font-weight: 400; color: #98A1B0; font-size: 18px"
-    );
     expect(screen.getByTestId("title")).toHaveTextContent("Total streamed");
   });
 
   it("displays Data", async () => {
-    expect(screen.getByTestId("data")).toHaveStyle(
-      "color: #222222; font-weight: 700; font-size: 36px;"
-    );
     expect(screen.getByTestId("data")).toHaveTextContent("0h 1");
   });
 
