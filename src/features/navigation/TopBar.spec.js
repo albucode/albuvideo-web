@@ -28,13 +28,16 @@ const fakeRenderComponent = () => {
 };
 
 describe("TopBar", () => {
-  it("displays section name", async () => {
+  beforeEach(() => {
     fakeRenderComponent();
+  });
+
+
+  it("displays section name", async () => {
     expect(screen.getByTestId("section-name")).toHaveTextContent("Test");
   });
 
   it("displays email initial", async () => {
-    fakeRenderComponent();
     expect(screen.getByTestId("email-initial")).toHaveTextContent("T");
   });
 
