@@ -32,7 +32,6 @@ describe("TopBar", () => {
     fakeRenderComponent();
   });
 
-
   it("displays section name", async () => {
     expect(screen.getByTestId("section-name")).toHaveTextContent("Test");
   });
