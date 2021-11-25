@@ -13,5 +13,5 @@ export const IconTag = ({ icon, inputColor }) => {
     margin-left: 18px;
   `;
 
-  return <Square>{icon}</Square>;
+  return <Square data-testid="square-icon">{icon}</Square>;
 };
