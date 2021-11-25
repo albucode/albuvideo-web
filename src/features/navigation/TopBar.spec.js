@@ -32,11 +32,11 @@ describe("TopBar", () => {
     fakeRenderComponent();
   });
 
-  it("displays section name", async () => {
+  it("displays section name", () => {
     expect(screen.getByTestId("section-name")).toHaveTextContent("Test");
   });
 
-  it("displays email initial", async () => {
+  it("displays email initial", () => {
     expect(screen.getByTestId("email-initial")).toHaveTextContent("T");
   });
 

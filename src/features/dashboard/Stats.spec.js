@@ -21,15 +21,15 @@ describe("Stats", () => {
     fakeRenderComponent();
   });
 
-  it("displays Title", async () => {
+  it("displays Title", () => {
     expect(screen.getByTestId("title")).toHaveTextContent("Total streamed");
   });
 
-  it("displays Data", async () => {
+  it("displays Data", () => {
     expect(screen.getByTestId("data")).toHaveTextContent("0h 1");
   });
 
-  it("displays IconTag", async () => {
+  it("displays IconTag", () => {
     expect(screen.getByTestId("square-icon")).toHaveStyle(
       "background-color: #00CFFD"
     );

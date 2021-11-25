@@ -12,7 +12,7 @@ const fakeRenderComponent = () => {
 };
 
 describe("IconTag", () => {
-  it("displays users icon ", async () => {
+  it("displays users icon ", () => {
     fakeRenderComponent();
     expect(screen.getByTestId("square-icon")).toHaveStyle(
       "background-color: rgb(50, 70, 210)"
