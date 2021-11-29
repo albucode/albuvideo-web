@@ -59,24 +59,26 @@ export const LogInPage = () => {
       </ImageContainer>
       <FormBackground>
         <FormContainer>
-          <Header>Login To Your Account</Header>
+          <Header data-testid="header">Login To Your Account</Header>
           <form onSubmit={createSession}>
             <FormItem>
-              <Label>Email address</Label>
+              <Label data-testid="email-field">Email address</Label>
               <Input
                 type="email"
                 onChange={(event) => setEmail(event.target.value)}
               />
             </FormItem>
             <FormItem>
-              <Label>Password</Label>
+              <Label data-testid="password-field">Password</Label>
               <Input
                 type="password"
                 onChange={(event) => setPassword(event.target.value)}
               />
             </FormItem>
             {displayErrorMessage && <ErrorAlert message={errorMessage} />}
-            <LogInButton type="submit">Log In</LogInButton>
+            <LogInButton data-testid="login-button" type="submit">
+              Log In
+            </LogInButton>
           </form>
         </FormContainer>
       </FormBackground>
