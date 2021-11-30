@@ -1,12 +1,15 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
+import { setupServer } from "msw/node";
+import { rest } from "msw";
 
 import { LogInPage } from "./LogInPage";
 import userReducer from "../authentication/userSlice";
 import errorAlertReducer from "../shared/errorAlertSlice";
 import { server } from "../../mocks/server";
+import { baseUrl } from "../../config";
 
 const fakeRenderComponent = () => {
   const store = configureStore({
@@ -73,17 +76,7 @@ describe("Form behaviour", () => {
 
   afterAll(() => server.close());
 
-  it("renders error message", async () => {
-    // await act (async () => {
-    //   fireEvent.change(screen.getByTestId("email-field"), {
-    //     target: {email: ''},
-    //   });
-    //
-    //   fireEvent.change(screen.getByTestId("password-field"), {
-    //     target: {password: ''},
-    //   });
-    // });
-
+  it("renders error message prompting to sign in or up", async () => {
     fakeRenderComponent();
     fireEvent.submit(screen.getByTestId("form"));
     expect(
@@ -93,24 +86,25 @@ describe("Form behaviour", () => {
     ).toBeInTheDocument();
   });
 
-  // it('should submit when form inputs contain text', async () => {
-  //   const { getByTestId, queryByText } = render(<Login/>)
-  //
-  //   await act(async () => {
-  //     fireEvent.change(screen.getByLabelText(/username/i), {
-  //       target: {value: 'shaquille'},
-  //     });
-  //
-  //     fireEvent.change(screen.getByLabelText(/password/i), {
-  //       target: {value: 'oatmeal'},
-  //     })
-  //   });
-  //
-  //   await act (async () => {
-  //     fireEvent.submit(getByTestId('form'))
-  //   });
-  //
-  //   expect(queryByText("User Name is required")).not.toBeInTheDocument();
-  //   expect(queryByText("Password is required")).not.toBeInTheDocument();
-  // });
+  it("renders error message pointing out invalid email or password", async () => {
+    const server = setupServer(
+      rest.post(`${baseUrl}/users/sign_in`, (req, res, ctx) => {
+        return res(ctx.json({ error: "Invalid Email or password." }));
+      })
+    );
+
+    server.listen();
+
+    fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(
+      await screen.findByText(/Invalid Email or password/i)
+    ).toBeInTheDocument();
+
+    server.close();
+  });
 });
