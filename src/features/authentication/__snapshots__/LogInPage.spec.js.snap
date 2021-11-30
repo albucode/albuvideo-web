@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LogInPage matches snapshot 1`] = `
+exports[`Renders LogInPage components matches snapshot 1`] = `
 <div>
   <div
     class="css-1c4hr0u"
@@ -28,7 +28,9 @@ exports[`LogInPage matches snapshot 1`] = `
         >
           Login To Your Account
         </p>
-        <form>
+        <form
+          data-testid="form"
+        >
           <div
             class="chakra-form-control css-1vtzp2s"
             role="group"

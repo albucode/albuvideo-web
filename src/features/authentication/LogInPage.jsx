@@ -60,7 +60,7 @@ export const LogInPage = () => {
       <FormBackground>
         <FormContainer>
           <Header data-testid="header">Login To Your Account</Header>
-          <form onSubmit={createSession}>
+          <form data-testid="form" onSubmit={createSession}>
             <FormItem>
               <Label data-testid="email-field">Email address</Label>
               <Input
