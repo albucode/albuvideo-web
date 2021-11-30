@@ -4,6 +4,8 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
+import {createMemoryHistory} from "history";
+import { Router } from "react-router-dom"
 
 import { LogInPage } from "./LogInPage";
 import userReducer from "../authentication/userSlice";
@@ -12,6 +14,8 @@ import { server } from "../../mocks/server";
 import { baseUrl } from "../../config";
 
 const fakeRenderComponent = () => {
+  const history = createMemoryHistory({});
+
   const store = configureStore({
     reducer: {
       user: userReducer,
@@ -32,10 +36,12 @@ const fakeRenderComponent = () => {
 
   const { container } = render(
     <Provider store={store}>
-      <LogInPage />
+      <Router history={history} >
+        <LogInPage />
+      </Router>
     </Provider>
   );
-  return { container };
+  return { container, history };
 };
 
 describe("Renders LogInPage components", () => {
@@ -104,6 +110,26 @@ describe("Form behaviour", () => {
     expect(
       await screen.findByText(/Invalid Email or password/i)
     ).toBeInTheDocument();
+
+    server.close();
+  });
+
+  it("redirects to dashboard", async () => {
+    const server = setupServer(
+      rest.post(`${baseUrl}/users/sign_in`, (req, res, ctx) => {
+        return res(ctx.json({ user:{email: "test@email.com"} }));
+      })
+    );
+
+    server.listen();
+
+    const { history } = await fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(history.location.pathname).to.eq("/dashboard");
 
     server.close();
   });
