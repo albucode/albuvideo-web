@@ -2,10 +2,9 @@ import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { setupServer } from "msw/node";
 import { rest } from "msw";
-import {createMemoryHistory} from "history";
-import { Router } from "react-router-dom"
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 
 import { LogInPage } from "./LogInPage";
 import userReducer from "../authentication/userSlice";
@@ -36,7 +35,7 @@ const fakeRenderComponent = () => {
 
   const { container } = render(
     <Provider store={store}>
-      <Router history={history} >
+      <Router history={history}>
         <LogInPage />
       </Router>
     </Provider>
@@ -93,13 +92,11 @@ describe("Form behaviour", () => {
   });
 
   it("renders error message pointing out invalid email or password", async () => {
-    const server = setupServer(
+    server.use(
       rest.post(`${baseUrl}/users/sign_in`, (req, res, ctx) => {
         return res(ctx.json({ error: "Invalid Email or password." }));
       })
     );
-
-    server.listen();
 
     fakeRenderComponent();
 
@@ -110,18 +107,14 @@ describe("Form behaviour", () => {
     expect(
       await screen.findByText(/Invalid Email or password/i)
     ).toBeInTheDocument();
-
-    server.close();
   });
 
   it("redirects to dashboard", async () => {
-    const server = setupServer(
+    server.use(
       rest.post(`${baseUrl}/users/sign_in`, (req, res, ctx) => {
-        return res(ctx.json({ user:{email: "test@email.com"} }));
+        return res(ctx.json({ user: { email: "test@email.com" } }));
       })
     );
-
-    server.listen();
 
     const { history } = await fakeRenderComponent();
 
@@ -129,8 +122,7 @@ describe("Form behaviour", () => {
       fireEvent.submit(screen.getByTestId("form"));
     });
 
-    expect(history.location.pathname).to.eq("/dashboard");
-
-    server.close();
+    console.log("history.location.pathname", await history.location.pathname);
+    expect(await history.location.pathname).toEqual("/dashboard");
   });
 });
