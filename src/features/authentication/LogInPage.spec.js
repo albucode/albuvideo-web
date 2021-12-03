@@ -76,6 +76,40 @@ describe("Form behaviour", () => {
     fetch.resetMocks();
   });
 
+  it("renders error message prompting to sign in or up", async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        error: "You need to sign in or sign up before continuing.",
+      })
+    );
+
+    fakeRenderComponent();
+
+    fireEvent.submit(screen.getByTestId("form"));
+
+    expect(
+      await screen.findByText(
+        /You need to sign in or sign up before continuing/i
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("renders error message pointing out invalid email or password", async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({ error: "Invalid Email or password." })
+    );
+
+    fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(
+      await screen.findByText(/Invalid Email or password/i)
+    ).toBeInTheDocument();
+  });
+
   it("redirects to dashboard", async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ user: { email: "test@email.com" } })
