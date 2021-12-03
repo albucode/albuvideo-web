@@ -18,17 +18,6 @@ const fakeRenderComponent = () => {
       user: userReducer,
       errorAlert: errorAlertReducer,
     },
-    preloadedState: {
-      user: {
-        email: "",
-        emailInitial: "",
-        isLoggedIn: false,
-      },
-      errorAlert: {
-        errorMessage: "",
-        displayErrorMessage: false,
-      },
-    },
   });
 
   const { container } = render(
@@ -46,16 +35,20 @@ describe("Form behaviour", () => {
     fetch.resetMocks();
   });
 
+  const submitForm = async () => {
+    await fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+  };
+
   it("renders error message prompting to sign in or up", async () => {
     mockApiResponse({
       error: "You need to sign in or sign up before continuing.",
     });
 
-    fakeRenderComponent();
-
-    await act(async () => {
-      fireEvent.submit(screen.getByTestId("form"));
-    });
+    await submitForm();
 
     expect(
       await screen.findByText(
@@ -67,11 +60,7 @@ describe("Form behaviour", () => {
   it("renders error message pointing out invalid email or password", async () => {
     mockApiResponse({ error: "Invalid Email or password." });
 
-    fakeRenderComponent();
-
-    await act(async () => {
-      fireEvent.submit(screen.getByTestId("form"));
-    });
+    await submitForm();
 
     expect(
       await screen.findByText(/Invalid Email or password/i)
