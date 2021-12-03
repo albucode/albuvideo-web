@@ -38,14 +38,14 @@ exports[`Renders LogInPage components matches snapshot 1`] = `
             <label
               class="chakra-form__label css-1xn8xj5"
               data-testid="email-field"
-              for="field-13"
-              id="field-13-label"
+              for="field-27"
+              id="field-27-label"
             >
               Email address
             </label>
             <input
               class="chakra-input css-0"
-              id="field-13"
+              id="field-27"
               type="email"
             />
           </div>
@@ -56,14 +56,14 @@ exports[`Renders LogInPage components matches snapshot 1`] = `
             <label
               class="chakra-form__label css-1xn8xj5"
               data-testid="password-field"
-              for="field-14"
-              id="field-14-label"
+              for="field-28"
+              id="field-28-label"
             >
               Password
             </label>
             <input
               class="chakra-input css-0"
-              id="field-14"
+              id="field-28"
               type="password"
             />
           </div>

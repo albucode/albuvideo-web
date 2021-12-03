@@ -8,6 +8,7 @@ import { Router } from "react-router-dom";
 import { LogInPage } from "./LogInPage";
 import userReducer from "../authentication/userSlice";
 import errorAlertReducer from "../shared/errorAlertSlice";
+import { mockApiResponse } from "../../utils/tests/apiResponseMocks";
 
 const fakeRenderComponent = () => {
   const history = createMemoryHistory({});
@@ -40,6 +41,56 @@ const fakeRenderComponent = () => {
   return { container, history };
 };
 
+describe("Form behaviour", () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
+  it("renders error message prompting to sign in or up", async () => {
+    mockApiResponse({
+      error: "You need to sign in or sign up before continuing.",
+    });
+
+    fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(
+      await screen.findByText(
+        /You need to sign in or sign up before continuing/i
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("renders error message pointing out invalid email or password", async () => {
+    mockApiResponse({ error: "Invalid Email or password." });
+
+    fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(
+      await screen.findByText(/Invalid Email or password/i)
+    ).toBeInTheDocument();
+  });
+
+  it("redirects to dashboard", async () => {
+    mockApiResponse({ user: { email: "test@email.com" } });
+
+    const { history } = await fakeRenderComponent();
+
+    await act(async () => {
+      fireEvent.submit(screen.getByTestId("form"));
+    });
+
+    expect(await history.location.pathname).toEqual("/dashboard");
+  });
+});
+
 describe("Renders LogInPage components", () => {
   beforeEach(() => {
     fakeRenderComponent();
@@ -68,58 +119,5 @@ describe("Renders LogInPage components", () => {
   it("matches snapshot", () => {
     const { container } = fakeRenderComponent();
     expect(container).toMatchSnapshot();
-  });
-});
-
-describe("Form behaviour", () => {
-  beforeEach(() => {
-    fetch.resetMocks();
-  });
-
-  it("renders error message prompting to sign in or up", async () => {
-    fetch.mockResponseOnce(
-      JSON.stringify({
-        error: "You need to sign in or sign up before continuing.",
-      })
-    );
-
-    fakeRenderComponent();
-
-    fireEvent.submit(screen.getByTestId("form"));
-
-    expect(
-      await screen.findByText(
-        /You need to sign in or sign up before continuing/i
-      )
-    ).toBeInTheDocument();
-  });
-
-  it("renders error message pointing out invalid email or password", async () => {
-    fetch.mockResponseOnce(
-      JSON.stringify({ error: "Invalid Email or password." })
-    );
-
-    fakeRenderComponent();
-
-    await act(async () => {
-      fireEvent.submit(screen.getByTestId("form"));
-    });
-
-    expect(
-      await screen.findByText(/Invalid Email or password/i)
-    ).toBeInTheDocument();
-  });
-
-  it("redirects to dashboard", async () => {
-    fetch.mockResponseOnce(
-      JSON.stringify({ user: { email: "test@email.com" } })
-    );
-    const { history } = await fakeRenderComponent();
-
-    await act(async () => {
-      fireEvent.submit(screen.getByTestId("form"));
-    });
-
-    expect(await history.location.pathname).toEqual("/dashboard");
   });
 });
