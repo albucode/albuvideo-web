@@ -43,40 +43,44 @@ describe("Form behaviour", () => {
     });
   };
 
-  it("renders error message prompting to sign in or up", async () => {
-    mockApiResponse({
-      error: "You need to sign in or sign up before continuing.",
+  describe("when login fails", () => {
+    it("renders error message prompting to sign in or up", async () => {
+      mockApiResponse({
+        error: "You need to sign in or sign up before continuing.",
+      });
+
+      await submitForm();
+
+      expect(
+        await screen.findByText(
+          /You need to sign in or sign up before continuing/i
+        )
+      ).toBeInTheDocument();
     });
 
-    await submitForm();
+    it("renders error message pointing out invalid email or password", async () => {
+      mockApiResponse({ error: "Invalid Email or password." });
 
-    expect(
-      await screen.findByText(
-        /You need to sign in or sign up before continuing/i
-      )
-    ).toBeInTheDocument();
-  });
+      await submitForm();
 
-  it("renders error message pointing out invalid email or password", async () => {
-    mockApiResponse({ error: "Invalid Email or password." });
-
-    await submitForm();
-
-    expect(
-      await screen.findByText(/Invalid Email or password/i)
-    ).toBeInTheDocument();
-  });
-
-  it("redirects to dashboard", async () => {
-    mockApiResponse({ user: { email: "test@email.com" } });
-
-    const { history } = await fakeRenderComponent();
-
-    await act(async () => {
-      fireEvent.submit(screen.getByTestId("form"));
+      expect(
+        await screen.findByText(/Invalid Email or password/i)
+      ).toBeInTheDocument();
     });
+  });
 
-    expect(await history.location.pathname).toEqual("/dashboard");
+  describe("when login succeeds", () => {
+    it("redirects to dashboard", async () => {
+      mockApiResponse({ user: { email: "test@email.com" } });
+
+      const { history } = await fakeRenderComponent();
+
+      await act(async () => {
+        fireEvent.submit(screen.getByTestId("form"));
+      });
+
+      expect(await history.location.pathname).toEqual("/dashboard");
+    });
   });
 });
 
