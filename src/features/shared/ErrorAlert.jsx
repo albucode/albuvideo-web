@@ -28,7 +28,7 @@ const ErrorAlert = ({ message }) => {
 };
 
 const Well = styled(Box)`
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${theme.colors.white};
   border-radius: 12px;
   padding: 12px 32px;
   margin-bottom: 30px;
@@ -36,7 +36,7 @@ const Well = styled(Box)`
 `;
 
 const CloseButton = styled(Button)`
-  background-color: ${(props) => props.theme.colors.white};
+  background-color: ${theme.colors.white};
   height: 5px;
 `;
 
@@ -52,7 +52,7 @@ const ErrorTitle = styled(Text)`
 const ErrorMessage = styled(Text)`
   font-weight: 400;
   font-size: 14px;
-  color: ${(props) => props.theme.colors.grey1};
+  color: ${theme.colors.grey1};
 `;
 
 export default ErrorAlert;

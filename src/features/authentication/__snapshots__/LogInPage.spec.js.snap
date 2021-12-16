@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders LogInPage components matches snapshot 1`] = `
+<div>
+  <div
+    class="css-1c4hr0u"
+  >
+    <div
+      class="css-1mfqb2z"
+    >
+      <div
+        class="css-h74a88"
+      >
+        <img
+          class="chakra-image__placeholder css-0"
+        />
+      </div>
+    </div>
+    <div
+      class="css-1j3ps0f"
+    >
+      <div
+        class="css-1lqkgdc"
+      >
+        <p
+          class="chakra-text css-1tafeqz"
+          data-testid="header"
+        >
+          Login To Your Account
+        </p>
+        <form
+          data-testid="form"
+        >
+          <div
+            class="chakra-form-control css-1vtzp2s"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1xn8xj5"
+              data-testid="email-field"
+              for="field-27"
+              id="field-27-label"
+            >
+              Email address
+            </label>
+            <input
+              class="chakra-input css-0"
+              id="field-27"
+              type="email"
+            />
+          </div>
+          <div
+            class="chakra-form-control css-1vtzp2s"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-1xn8xj5"
+              data-testid="password-field"
+              for="field-28"
+              id="field-28-label"
+            >
+              Password
+            </label>
+            <input
+              class="chakra-input css-0"
+              id="field-28"
+              type="password"
+            />
+          </div>
+          <button
+            class="chakra-button css-wkulga"
+            data-testid="login-button"
+            type="submit"
+          >
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
